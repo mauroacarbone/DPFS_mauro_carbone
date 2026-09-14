@@ -99,3 +99,27 @@ Para verlo todo junto: [design/index.html](design/index.html).
 
 Colores: rojo `#E81C3A`, amarillo `#FFE600`, azul `#3483FA`, negro `#121212`.  
 Fuentes: Nunito para el logo y los títulos, Inter para el resto de los textos.
+
+---
+
+## Tablero de trabajo
+
+https://github.com/users/mauroacarbone/projects/1/views/1
+
+---
+
+## Sprint 2 — Maqueta HTML y CSS
+
+- Retrospectiva: `retro.md`
+- Tablero: https://github.com/users/mauroacarbone/projects/1/views/1
+- Copia local: `tablero.html`
+- Páginas en `Views/` y estilos en `styles/main.css`
+
+| Página | Archivo |
+|---|---|
+| Home | Views/index.html |
+| Detalle de producto | Views/productDetail.html |
+| Carrito | Views/productCart.html |
+| Registro | Views/register.html |
+| Login | Views/login.html |
+

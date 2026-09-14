@@ -1,3 +1,6 @@
+/* Sprint 2 — estilos de la maqueta RendiYa (UI/UX).
+   Paleta PedidosYa / Mercado Libre. Responsive desde ~360px.
+   El menú hamburguesa usa checkbox (sin JavaScript). */
 :root {
   --rojo: #e81c3a;
   --rojo-oscuro: #c41430;

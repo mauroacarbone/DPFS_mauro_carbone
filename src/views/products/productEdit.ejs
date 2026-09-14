@@ -5,7 +5,6 @@
   <%- include('../partials/header') %>
   <main class="auth admin-form">
     <h1>Editar vehículo</h1>
-    <p>PUT a /products/<%= product.id %>. También podés eliminar la unidad.</p>
     <form action="/products/<%= product.id %>?_method=PUT" method="post" enctype="multipart/form-data">
       <input type="hidden" name="_method" value="PUT" />
       <div class="campo">
@@ -25,21 +24,35 @@
         <input id="image" name="image" type="text" value="<%= product.image %>" />
       </div>
       <div class="campo">
-        <label for="category">Categoría</label>
-        <select id="category" name="category">
-          <option value="Auto" <%= product.category === 'Auto' ? 'selected' : '' %>>Auto</option>
-          <option value="Moto" <%= product.category === 'Moto' ? 'selected' : '' %>>Moto</option>
+        <label for="productCategoryId">Categoría</label>
+        <select id="productCategoryId" name="productCategoryId">
+          <% productCategories.forEach(function (item) { %>
+            <option value="<%= item.id %>" <%= Number(product.productCategoryId) === Number(item.id) ? 'selected' : '' %>><%= item.name %></option>
+          <% }) %>
         </select>
       </div>
       <div class="campo">
-        <label for="colors">Color</label>
-        <input id="colors" name="colors" type="text" value="<%= product.colors %>" />
+        <label for="brandId">Marca</label>
+        <select id="brandId" name="brandId">
+          <% brands.forEach(function (item) { %>
+            <option value="<%= item.id %>" <%= Number(product.brandId) === Number(item.id) ? 'selected' : '' %>><%= item.name %></option>
+          <% }) %>
+        </select>
       </div>
       <div class="campo">
-        <label for="zone">Zona</label>
-        <select id="zone" name="zone">
-          <option value="CABA" <%= product.zone === 'CABA' ? 'selected' : '' %>>CABA</option>
-          <option value="GBA" <%= product.zone === 'GBA' ? 'selected' : '' %>>GBA</option>
+        <label for="colorId">Color</label>
+        <select id="colorId" name="colorId">
+          <% colors.forEach(function (item) { %>
+            <option value="<%= item.id %>" <%= Number(product.colorId) === Number(item.id) ? 'selected' : '' %>><%= item.name %></option>
+          <% }) %>
+        </select>
+      </div>
+      <div class="campo">
+        <label for="zoneId">Zona</label>
+        <select id="zoneId" name="zoneId">
+          <% zones.forEach(function (item) { %>
+            <option value="<%= item.id %>" <%= Number(product.zoneId) === Number(item.id) ? 'selected' : '' %>><%= item.name %></option>
+          <% }) %>
         </select>
       </div>
       <div class="campo">

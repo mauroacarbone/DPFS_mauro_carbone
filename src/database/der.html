@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>RendiYa — Diagrama entidad-relación</title>
+  <style>
+    body { font-family: Arial, sans-serif; color: #121212; margin: 24px; }
+    h1 { color: #E81C3A; }
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .table {
+      border: 2px solid #121212;
+      border-radius: 8px;
+      padding: 8px 12px;
+      background: #fff;
+    }
+    .table h2 { margin: 0 0 8px; font-size: 16px; background: #E81C3A; color: #fff; padding: 4px 8px; }
+    .pk { font-weight: 700; }
+    .fk { color: #3483FA; }
+    svg { width: 100%; max-width: 1100px; height: auto; margin-top: 24px; }
+    p { max-width: 900px; }
+  </style>
+</head>
+<body>
+  <h1>RendiYa — DER</h1>
+  <p>Tablas en inglés. Un producto tiene una categoría, una marca, un color y una zona. Un usuario tiene una categoría. El carrito opcional guarda quién reserva, el total y el detalle de ítems.</p>
+  <svg viewBox="0 0 1100 720" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+        <polygon points="0 0, 10 3.5, 0 7" fill="#121212" />
+      </marker>
+    </defs>
+    <rect x="20" y="20" width="200" height="110" fill="#fff" stroke="#121212" />
+    <text x="30" y="42" font-size="14" font-weight="700">user_categories</text>
+    <text x="30" y="64" font-size="12">PK id</text>
+    <text x="30" y="82" font-size="12">name UNIQUE</text>
+
+    <rect x="20" y="180" width="220" height="170" fill="#fff" stroke="#121212" />
+    <text x="30" y="202" font-size="14" font-weight="700">users</text>
+    <text x="30" y="224" font-size="12">PK id</text>
+    <text x="30" y="242" font-size="12">first_name, last_name</text>
+    <text x="30" y="260" font-size="12">email UNIQUE</text>
+    <text x="30" y="278" font-size="12">password, image</text>
+    <text x="30" y="296" font-size="12" fill="#3483FA">FK user_category_id</text>
+
+    <rect x="320" y="20" width="200" height="90" fill="#fff" stroke="#121212" />
+    <text x="330" y="42" font-size="14" font-weight="700">product_categories</text>
+    <text x="330" y="64" font-size="12">PK id · name UNIQUE</text>
+
+    <rect x="540" y="20" width="160" height="90" fill="#fff" stroke="#121212" />
+    <text x="550" y="42" font-size="14" font-weight="700">brands</text>
+    <text x="550" y="64" font-size="12">PK id · name UNIQUE</text>
+
+    <rect x="720" y="20" width="160" height="90" fill="#fff" stroke="#121212" />
+    <text x="730" y="42" font-size="14" font-weight="700">colors</text>
+    <text x="730" y="64" font-size="12">PK id · name UNIQUE</text>
+
+    <rect x="900" y="20" width="160" height="90" fill="#fff" stroke="#121212" />
+    <text x="910" y="42" font-size="14" font-weight="700">zones</text>
+    <text x="910" y="64" font-size="12">PK id · name UNIQUE</text>
+
+    <rect x="420" y="180" width="280" height="210" fill="#fff" stroke="#121212" />
+    <text x="430" y="202" font-size="14" font-weight="700">products</text>
+    <text x="430" y="224" font-size="12">PK id</text>
+    <text x="430" y="242" font-size="12">name, description, image, price</text>
+    <text x="430" y="260" font-size="12" fill="#3483FA">FK product_category_id</text>
+    <text x="430" y="278" font-size="12" fill="#3483FA">FK brand_id</text>
+    <text x="430" y="296" font-size="12" fill="#3483FA">FK color_id</text>
+    <text x="430" y="314" font-size="12" fill="#3483FA">FK zone_id</text>
+    <text x="430" y="332" font-size="12">transmission, license</text>
+    <text x="430" y="350" font-size="12">vtv, insurance</text>
+
+    <rect x="20" y="430" width="240" height="140" fill="#fff" stroke="#121212" />
+    <text x="30" y="452" font-size="14" font-weight="700">carts</text>
+    <text x="30" y="474" font-size="12">PK id</text>
+    <text x="30" y="492" font-size="12" fill="#3483FA">FK user_id</text>
+    <text x="30" y="510" font-size="12">total, status</text>
+
+    <rect x="420" y="430" width="280" height="160" fill="#fff" stroke="#121212" />
+    <text x="430" y="452" font-size="14" font-weight="700">cart_items</text>
+    <text x="430" y="474" font-size="12">PK id</text>
+    <text x="430" y="492" font-size="12" fill="#3483FA">FK cart_id</text>
+    <text x="430" y="510" font-size="12" fill="#3483FA">FK product_id</text>
+    <text x="430" y="528" font-size="12">quantity, unit_price, subtotal</text>
+
+    <line x1="120" y1="130" x2="120" y2="180" stroke="#121212" marker-end="url(#arrow)" />
+    <line x1="130" y1="350" x2="130" y2="430" stroke="#121212" marker-end="url(#arrow)" />
+    <line x1="260" y1="500" x2="420" y2="500" stroke="#121212" marker-end="url(#arrow)" />
+    <line x1="560" y1="390" x2="560" y2="430" stroke="#121212" marker-end="url(#arrow)" />
+    <line x1="420" y1="110" x2="500" y2="180" stroke="#121212" marker-end="url(#arrow)" />
+    <line x1="620" y1="110" x2="560" y2="180" stroke="#121212" marker-end="url(#arrow)" />
+    <line x1="800" y1="110" x2="620" y2="180" stroke="#121212" marker-end="url(#arrow)" />
+    <line x1="980" y1="110" x2="680" y2="180" stroke="#121212" marker-end="url(#arrow)" />
+  </svg>
+  <p>Cardinalidad: user_categories 1—N users; users 1—N carts; carts 1—N cart_items; products 1—N cart_items; product_categories / brands / colors / zones 1—N products.</p>
+</body>
+</html>

@@ -21,6 +21,7 @@
         <li>Retiro cerca del centro de emisión</li>
       </ul>
       <form action="/products/cart" method="get">
+        <input type="hidden" name="id" value="<%= product.id %>" />
         <div class="campo">
           <label for="fecha">Fecha del examen</label>
           <input id="fecha" type="date" name="fecha" />

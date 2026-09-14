@@ -1,7 +1,19 @@
 const bcrypt = require('bcryptjs');
-const userService = require('../services/userService');
+const db = require('../database/models');
+const { presentUser } = require('../database/presenters');
 
 const THIRTY_DAYS = 1000 * 60 * 60 * 24 * 30;
+
+async function findUserByEmail(email) {
+  return db.User.findOne({
+    where: { email },
+    include: ['category']
+  });
+}
+
+async function findUserById(id) {
+  return db.User.findByPk(id, { include: ['category'] });
+}
 
 function login(req, res) {
   res.render('users/login', {
@@ -11,10 +23,10 @@ function login(req, res) {
   });
 }
 
-function processLogin(req, res) {
+async function processLogin(req, res) {
   const email = (req.body.email || '').trim();
   const password = req.body.password || '';
-  const stored = userService.findByEmail(email);
+  const stored = await findUserByEmail(email);
   const ok = stored && bcrypt.compareSync(password, stored.password);
 
   if (!ok) {
@@ -25,7 +37,7 @@ function processLogin(req, res) {
     });
   }
 
-  req.session.user = userService.publicUser(stored);
+  req.session.user = presentUser(stored);
 
   if (req.body.remember) {
     res.cookie('rememberEmail', stored.email, { maxAge: THIRTY_DAYS });
@@ -44,19 +56,19 @@ function register(req, res) {
   });
 }
 
-function processRegister(req, res) {
+async function processRegister(req, res) {
   const firstName = (req.body.firstName || '').trim();
   const lastName = (req.body.lastName || '').trim();
   const email = (req.body.email || '').trim();
   const password = req.body.password || '';
   const passwordConfirm = req.body.passwordConfirm || '';
-  const category = req.body.category || 'client';
+  const categoryName = req.body.category || 'client';
   const errors = {};
 
   if (!firstName) errors.firstName = 'Ingresá tu nombre.';
   if (!lastName) errors.lastName = 'Ingresá tu apellido.';
   if (!email) errors.email = 'Ingresá un email.';
-  if (email && userService.findByEmail(email)) {
+  if (email && await findUserByEmail(email)) {
     errors.email = 'Ya hay una cuenta con este email.';
   }
   if (!password || password.length < 6) {
@@ -70,36 +82,112 @@ function processRegister(req, res) {
     return res.render('users/register', {
       title: 'Crear cuenta — RendiYa',
       errors,
-      old: { firstName, lastName, email, category }
+      old: { firstName, lastName, email, category: categoryName }
     });
   }
 
-  const users = userService.readUsers();
-  const image = req.file
-    ? '/images/users/' + req.file.filename
-    : '/images/favicon.png';
+  const userCategory = await db.UserCategory.findOne({ where: { name: categoryName } })
+    || await db.UserCategory.findOne({ where: { name: 'client' } });
 
-  const user = {
-    id: userService.nextId(users),
+  const user = await db.User.create({
     firstName,
     lastName,
     email,
     password: bcrypt.hashSync(password, 10),
-    category,
-    image
-  };
+    image: req.file ? '/images/users/' + req.file.filename : '/images/favicon.png',
+    userCategoryId: userCategory.id
+  });
 
-  users.push(user);
-  userService.writeUsers(users);
-  req.session.user = userService.publicUser(user);
-
+  const created = await findUserById(user.id);
+  req.session.user = presentUser(created);
   return res.redirect('/users/profile');
 }
 
-function profile(req, res) {
-  res.render('users/profile', {
-    title: 'Mi perfil — RendiYa'
+async function list(req, res) {
+  const rows = await db.User.findAll({ include: ['category'], order: [['id', 'ASC']] });
+  res.render('users/userList', {
+    title: 'Usuarios — RendiYa',
+    users: rows.map(presentUser)
   });
+}
+
+async function profile(req, res) {
+  const row = await findUserById(req.session.user.id);
+  req.session.user = presentUser(row);
+  res.render('users/profile', {
+    title: 'Mi perfil — RendiYa',
+    profileUser: presentUser(row)
+  });
+}
+
+async function detail(req, res) {
+  const row = await findUserById(req.params.id);
+  if (!row) {
+    return res.redirect('/users');
+  }
+  res.render('users/userDetail', {
+    title: `${row.firstName} — RendiYa`,
+    profileUser: presentUser(row)
+  });
+}
+
+async function edit(req, res) {
+  const row = await findUserById(req.params.id);
+  if (!row) {
+    return res.redirect('/users/profile');
+  }
+  const isOwn = req.session.user.id === row.id;
+  const isAdmin = req.session.user.category === 'admin';
+  if (!isOwn && !isAdmin) {
+    return res.redirect('/users/profile');
+  }
+  const categories = await db.UserCategory.findAll({ order: [['id', 'ASC']] });
+  res.render('users/userEdit', {
+    title: 'Editar perfil — RendiYa',
+    profileUser: presentUser(row),
+    userCategories: categories.map((item) => item.get({ plain: true }))
+  });
+}
+
+async function update(req, res) {
+  const row = await findUserById(req.params.id);
+  if (!row) {
+    return res.redirect('/users/profile');
+  }
+  const isOwn = req.session.user.id === row.id;
+  const isAdmin = req.session.user.category === 'admin';
+  if (!isOwn && !isAdmin) {
+    return res.redirect('/users/profile');
+  }
+
+  const firstName = (req.body.firstName || '').trim();
+  const lastName = (req.body.lastName || '').trim();
+  const email = (req.body.email || '').trim();
+  let userCategoryId = row.userCategoryId;
+  if (isAdmin && req.body.userCategoryId) {
+    userCategoryId = Number(req.body.userCategoryId);
+  }
+
+  const data = {
+    firstName: firstName || row.firstName,
+    lastName: lastName || row.lastName,
+    email: email || row.email,
+    userCategoryId
+  };
+
+  if (req.file) {
+    data.image = '/images/users/' + req.file.filename;
+  }
+  if (req.body.password && req.body.password.length >= 6) {
+    data.password = bcrypt.hashSync(req.body.password, 10);
+  }
+
+  await row.update(data);
+  const updated = await findUserById(row.id);
+  if (isOwn) {
+    req.session.user = presentUser(updated);
+  }
+  return res.redirect('/users/' + row.id);
 }
 
 function logout(req, res) {
@@ -114,6 +202,10 @@ module.exports = {
   processLogin,
   register,
   processRegister,
+  list,
   profile,
+  detail,
+  edit,
+  update,
   logout
 };

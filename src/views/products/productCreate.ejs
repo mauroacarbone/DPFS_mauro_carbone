@@ -5,7 +5,6 @@
   <%- include('../partials/header') %>
   <main class="auth admin-form">
     <h1>Alta de vehículo</h1>
-    <p>Los datos se guardan en products.json (Sprint 4).</p>
     <form action="/products" method="post" enctype="multipart/form-data">
       <div class="campo">
         <label for="name">Nombre del producto</label>
@@ -24,21 +23,35 @@
         <input id="image" name="image" type="text" placeholder="/images/etios.jpg" />
       </div>
       <div class="campo">
-        <label for="category">Categoría</label>
-        <select id="category" name="category">
-          <option value="Auto">Auto</option>
-          <option value="Moto">Moto</option>
+        <label for="productCategoryId">Categoría</label>
+        <select id="productCategoryId" name="productCategoryId">
+          <% productCategories.forEach(function (item) { %>
+            <option value="<%= item.id %>"><%= item.name %></option>
+          <% }) %>
         </select>
       </div>
       <div class="campo">
-        <label for="colors">Color</label>
-        <input id="colors" name="colors" type="text" placeholder="Blanco, Gris, Rojo…" />
+        <label for="brandId">Marca</label>
+        <select id="brandId" name="brandId">
+          <% brands.forEach(function (item) { %>
+            <option value="<%= item.id %>"><%= item.name %></option>
+          <% }) %>
+        </select>
       </div>
       <div class="campo">
-        <label for="zone">Zona</label>
-        <select id="zone" name="zone">
-          <option value="CABA">CABA</option>
-          <option value="GBA">GBA</option>
+        <label for="colorId">Color</label>
+        <select id="colorId" name="colorId">
+          <% colors.forEach(function (item) { %>
+            <option value="<%= item.id %>"><%= item.name %></option>
+          <% }) %>
+        </select>
+      </div>
+      <div class="campo">
+        <label for="zoneId">Zona</label>
+        <select id="zoneId" name="zoneId">
+          <% zones.forEach(function (item) { %>
+            <option value="<%= item.id %>"><%= item.name %></option>
+          <% }) %>
         </select>
       </div>
       <div class="campo">

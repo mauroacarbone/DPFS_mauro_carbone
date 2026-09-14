@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="es">
+<%- include('../partials/head') %>
+<body>
+  <%- include('../partials/header') %>
+  <main class="auth perfil">
+    <h1>Detalle de usuario</h1>
+    <img class="avatar" src="<%= profileUser.image %>" alt="Foto de <%= profileUser.firstName %>" />
+    <p><strong><%= profileUser.firstName %> <%= profileUser.lastName %></strong></p>
+    <p><%= profileUser.email %></p>
+    <p class="tag"><%= profileUser.category %></p>
+    <% if (user && (user.id === profileUser.id || user.category === 'admin')) { %>
+      <p><a class="btn btn-rojo" href="/users/<%= profileUser.id %>/edit">Editar</a></p>
+    <% } %>
+    <p><a class="btn btn-linea" href="/users">Volver al listado</a></p>
+  </main>
+  <%- include('../partials/footer') %>
+</body>
+</html>

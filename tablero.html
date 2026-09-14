@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Tablero RendiYa — Sprint 2</title>
+  <title>Tablero RendiYa — Sprint 6</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@800&family=Inter:wght@400;600&display=swap" rel="stylesheet" />
   <style>
@@ -75,7 +75,6 @@
     .t-story { background: #e6fcff; }
     .t-task { background: #fefae6; }
     .t-done { background: #e3fcec; }
-    .t-now { background: var(--amarillo); }
     footer {
       color: #fff;
       font-size: 13px;
@@ -87,47 +86,32 @@
   <header>
     <div>
       <h1>RendiYa · Tablero de trabajo</h1>
-      <p>Sprint 2 — Maqueta HTML y CSS. Responsable: Mauro Carbone. Criterio de listo: página en <code>Views/</code>, estilos en <code>styles/</code>, enlaces y vista en celular.</p>
+      <p>Sprint 6 — Base de datos y Sequelize. Responsable: Mauro Carbone.</p>
     </div>
-    <p><a href="Views/index.html">Abrir el sitio</a> · <a href="README.md">README</a> · <a href="retro.md">Retro</a></p>
+    <p><a href="https://github.com/users/mauroacarbone/projects/1/views/1">GitHub Project</a> · <a href="README.md">README</a> · <a href="retro.md">Retro</a></p>
   </header>
 
   <div class="board">
     <section class="col">
       <h2>Por hacer</h2>
       <article class="card">
-        <span class="tag t-task">Sprint 3</span>
-        <strong>Esperar consigna de la siguiente iteración</strong>
-        <p class="meta">No iniciar hasta tener el enunciado.</p>
-      </article>
-      <article class="card">
-        <span class="tag t-task">Opcional</span>
-        <strong>Pasar este tablero a GitHub Projects o Trello</strong>
-        <p class="meta">Si el corrector pide un enlace externo.</p>
+        <span class="tag t-task">Sprint 7</span>
+        <strong>Esperar la consigna de cierre</strong>
+        <p class="meta">Validaciones extra y pulido si lo pide el enunciado.</p>
       </article>
     </section>
 
     <section class="col">
       <h2>En curso</h2>
-      <article class="card">
-        <span class="tag t-now">Ahora</span>
-        <strong>Revisión visual escritorio + celular</strong>
-        <p>Probar menú hamburguesa, formularios con errores y recorrido Home → detalle → carrito → login.</p>
-        <p class="meta">DoD: se ve bien en 360px y en 1100px.</p>
-      </article>
+      <p class="meta" style="padding:8px">Nada pendiente del Sprint 6.</p>
     </section>
 
     <section class="col">
       <h2>En revisión</h2>
       <article class="card">
         <span class="tag t-story">US</span>
-        <strong>Home: ver la oferta y usar el sitio en el teléfono</strong>
-        <p class="meta">Views/index.html</p>
-      </article>
-      <article class="card">
-        <span class="tag t-story">US</span>
-        <strong>Detalle: información del producto y agregar al carrito</strong>
-        <p class="meta">Views/productDetail.html</p>
+        <strong>CRUD de productos y usuarios con Sequelize</strong>
+        <p class="meta">Listar, buscar, detalle, alta, edición (y baja de productos).</p>
       </article>
     </section>
 
@@ -135,34 +119,32 @@
       <h2>Listo</h2>
       <article class="card">
         <span class="tag t-done">Listo</span>
-        <strong>Retrospectiva Sprint 1 (estrella de mar)</strong>
-        <p class="meta">retro.md</p>
+        <strong>DER de la base</strong>
+        <p class="meta">src/database/der.html · der.drawio · der.pdf</p>
       </article>
       <article class="card">
         <span class="tag t-done">Listo</span>
-        <strong>Carrito: ver detalle, quitar o cambiar cantidad</strong>
-        <p class="meta">Views/productCart.html</p>
+        <strong>structure.sql y data.sql</strong>
+        <p class="meta">Base rendiya, tablas, FKs y seed</p>
       </article>
       <article class="card">
         <span class="tag t-done">Listo</span>
-        <strong>Registro: alta de usuario (vista de errores)</strong>
-        <p class="meta">Views/register.html</p>
+        <strong>Config y modelos Sequelize</strong>
+        <p class="meta">src/database/config y models con associate()</p>
       </article>
       <article class="card">
         <span class="tag t-done">Listo</span>
-        <strong>Login: entrar, recordarme y recuperar contraseña</strong>
-        <p class="meta">Views/login.html</p>
+        <strong>Sprint 5 — sesión y middlewares</strong>
       </article>
       <article class="card">
         <span class="tag t-done">Listo</span>
-        <strong>Identidad Sprint 1</strong>
-        <p class="meta">README, wireframes, design</p>
+        <strong>Sprint 4 — CRUD JSON</strong>
       </article>
     </section>
   </div>
 
   <footer>
-    Cada tarjeta indica el entregable. Una tarea está lista cuando el HTML, el CSS y los enlaces están en el repositorio.
+    Tablero local de apoyo. El tablero oficial está en GitHub Projects.
   </footer>
 </body>
 </html>

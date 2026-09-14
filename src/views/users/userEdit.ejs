@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<%- include('../partials/head') %>
+<body>
+  <%- include('../partials/header') %>
+  <main class="auth admin-form">
+    <h1>Editar usuario</h1>
+    <form action="/users/<%= profileUser.id %>?_method=PUT" method="post" enctype="multipart/form-data">
+      <input type="hidden" name="_method" value="PUT" />
+      <div class="campo">
+        <label for="firstName">Nombre</label>
+        <input id="firstName" name="firstName" type="text" value="<%= profileUser.firstName %>" required />
+      </div>
+      <div class="campo">
+        <label for="lastName">Apellido</label>
+        <input id="lastName" name="lastName" type="text" value="<%= profileUser.lastName %>" required />
+      </div>
+      <div class="campo">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" value="<%= profileUser.email %>" required />
+      </div>
+      <div class="campo">
+        <label for="password">Nueva contraseña (opcional)</label>
+        <input id="password" name="password" type="password" minlength="6" />
+      </div>
+      <div class="campo">
+        <label for="image">Foto</label>
+        <input id="image" name="image" type="file" accept="image/*" />
+      </div>
+      <% if (user && user.category === 'admin') { %>
+        <div class="campo">
+          <label for="userCategoryId">Categoría</label>
+          <select id="userCategoryId" name="userCategoryId">
+            <% userCategories.forEach(function (item) { %>
+              <option value="<%= item.id %>" <%= Number(profileUser.userCategoryId) === Number(item.id) ? 'selected' : '' %>><%= item.name %></option>
+            <% }) %>
+          </select>
+        </div>
+      <% } %>
+      <p><button class="btn btn-rojo" type="submit">Guardar</button></p>
+    </form>
+  </main>
+  <%- include('../partials/footer') %>
+</body>
+</html>

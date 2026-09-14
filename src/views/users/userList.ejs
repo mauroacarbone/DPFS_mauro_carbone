@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+<%- include('../partials/head') %>
+<body>
+  <%- include('../partials/header') %>
+  <main class="wrap seccion">
+    <h1>Usuarios</h1>
+    <div class="grid-prod">
+      <% users.forEach(function (item) { %>
+        <article class="card">
+          <img src="<%= item.image %>" alt="<%= item.firstName %>" />
+          <h3><%= item.firstName %> <%= item.lastName %></h3>
+          <p><%= item.email %></p>
+          <p class="tag"><%= item.category %></p>
+          <p><a class="btn btn-linea" href="/users/<%= item.id %>">Ver detalle</a></p>
+        </article>
+      <% }) %>
+    </div>
+  </main>
+  <%- include('../partials/footer') %>
+</body>
+</html>

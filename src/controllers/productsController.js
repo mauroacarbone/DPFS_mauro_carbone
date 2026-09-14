@@ -1,4 +1,6 @@
-const productService = require('../services/productService');
+const { Op } = require('sequelize');
+const db = require('../database/models');
+const { presentProduct, productInclude } = require('../database/presenters');
 
 function imageFromRequest(req, currentImage) {
   if (req.file) {
@@ -10,114 +12,137 @@ function imageFromRequest(req, currentImage) {
   return currentImage || '/images/etios.jpg';
 }
 
-function payloadFromBody(req, current) {
-  const category = req.body.category || (current && current.category) || 'Auto';
+async function catalogs() {
+  const [categories, brands, colors, zones] = await Promise.all([
+    db.ProductCategory.findAll({ order: [['name', 'ASC']] }),
+    db.Brand.findAll({ order: [['name', 'ASC']] }),
+    db.Color.findAll({ order: [['name', 'ASC']] }),
+    db.Zone.findAll({ order: [['name', 'ASC']] })
+  ]);
+  return {
+    productCategories: categories.map((row) => row.get({ plain: true })),
+    brands: brands.map((row) => row.get({ plain: true })),
+    colors: colors.map((row) => row.get({ plain: true })),
+    zones: zones.map((row) => row.get({ plain: true }))
+  };
+}
+
+async function payloadFromBody(req, current) {
+  const productCategoryId = Number(req.body.productCategoryId) || (current && current.productCategoryId) || 1;
+  const category = await db.ProductCategory.findByPk(productCategoryId);
+  const isMoto = category && category.name === 'Moto';
+
   return {
     name: req.body.name,
     description: req.body.description,
     image: imageFromRequest(req, current && current.image),
-    category,
-    colors: req.body.colors || 'Blanco',
     price: Number(req.body.price) || 0,
-    zone: req.body.zone || 'CABA',
-    transmission: req.body.transmission || 'Manual',
-    license: category === 'Moto' ? 'Clase A' : 'Clase B',
+    productCategoryId,
+    brandId: Number(req.body.brandId) || (current && current.brandId) || 1,
+    colorId: Number(req.body.colorId) || (current && current.colorId) || 1,
+    zoneId: Number(req.body.zoneId) || (current && current.zoneId) || 1,
+    transmission: req.body.transmission || (current && current.transmission) || 'Manual',
+    license: isMoto ? 'Clase A' : 'Clase B',
     vtv: true,
     insurance: true
   };
 }
 
 const productsController = {
-  list: (req, res) => {
+  list: async (req, res) => {
     const { category, zone, q } = req.query;
-    let list = productService.readProducts();
+    const where = {};
+    const include = productInclude.map((item) => ({ ...item }));
 
+    if (q) {
+      where.name = { [Op.like]: '%' + q + '%' };
+    }
     if (category) {
-      list = list.filter((item) => item.category === category);
+      include[0] = { association: 'category', where: { name: category }, required: true };
     }
     if (zone) {
-      list = list.filter((item) => item.zone === zone);
-    }
-    if (q) {
-      const term = q.toLowerCase();
-      list = list.filter((item) => item.name.toLowerCase().includes(term));
+      include[3] = { association: 'zone', where: { name: zone }, required: true };
     }
 
+    const rows = await db.Product.findAll({ where, include, order: [['id', 'ASC']] });
     res.render('products/productList', {
       title: 'Catálogo — RendiYa',
-      products: list,
+      products: rows.map(presentProduct),
       category: category || '',
       zone: zone || '',
       q: q || ''
     });
   },
 
-  detail: (req, res) => {
-    const product = productService.findById(req.params.id);
-    if (!product) {
+  detail: async (req, res) => {
+    const row = await db.Product.findByPk(req.params.id, { include: productInclude });
+    if (!row) {
       return res.redirect('/products');
     }
     res.render('products/productDetail', {
-      title: `${product.name} — RendiYa`,
-      product
+      title: `${row.name} — RendiYa`,
+      product: presentProduct(row)
     });
   },
 
-  cart: (req, res) => {
-    const products = productService.readProducts();
-    const product = productService.findById(req.query.id) || products[0];
+  cart: async (req, res) => {
+    const row = req.query.id
+      ? await db.Product.findByPk(req.query.id, { include: productInclude })
+      : await db.Product.findOne({ include: productInclude, order: [['id', 'ASC']] });
     res.render('products/productCart', {
       title: 'Carrito — RendiYa',
-      product,
+      product: presentProduct(row),
       instructor: true
     });
   },
 
-  create: (req, res) => {
+  create: async (req, res) => {
+    const options = await catalogs();
     res.render('products/productCreate', {
-      title: 'Alta de vehículo — RendiYa'
+      title: 'Alta de vehículo — RendiYa',
+      productCategories: options.productCategories,
+      brands: options.brands,
+      colors: options.colors,
+      zones: options.zones
     });
   },
 
-  store: (req, res) => {
-    const products = productService.readProducts();
-    const product = {
-      id: productService.nextId(products),
-      ...payloadFromBody(req)
-    };
-    products.push(product);
-    productService.writeProducts(products);
+  store: async (req, res) => {
+    const product = await db.Product.create(await payloadFromBody(req));
     res.redirect('/products/' + product.id);
   },
 
-  edit: (req, res) => {
-    const product = productService.findById(req.params.id);
-    if (!product) {
+  edit: async (req, res) => {
+    const row = await db.Product.findByPk(req.params.id, { include: productInclude });
+    if (!row) {
       return res.redirect('/products');
     }
+    const options = await catalogs();
     res.render('products/productEdit', {
-      title: `Editar ${product.name} — RendiYa`,
-      product
+      title: `Editar ${row.name} — RendiYa`,
+      product: presentProduct(row),
+      productCategories: options.productCategories,
+      brands: options.brands,
+      colors: options.colors,
+      zones: options.zones
     });
   },
 
-  update: (req, res) => {
-    const products = productService.readProducts();
-    const index = products.findIndex((item) => item.id === Number(req.params.id));
-    if (index === -1) {
+  update: async (req, res) => {
+    const row = await db.Product.findByPk(req.params.id);
+    if (!row) {
       return res.redirect('/products');
     }
-    products[index] = {
-      ...products[index],
-      ...payloadFromBody(req, products[index])
-    };
-    productService.writeProducts(products);
+    await row.update(await payloadFromBody(req, row));
     res.redirect('/products/' + req.params.id);
   },
 
-  destroy: (req, res) => {
-    const products = productService.readProducts().filter((item) => item.id !== Number(req.params.id));
-    productService.writeProducts(products);
+  destroy: async (req, res) => {
+    const row = await db.Product.findByPk(req.params.id);
+    if (row) {
+      await db.CartItem.destroy({ where: { productId: row.id } });
+      await row.destroy();
+    }
     res.redirect('/products');
   }
 };

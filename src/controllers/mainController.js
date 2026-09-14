@@ -1,17 +1,18 @@
-const productService = require('../services/productService');
+const db = require('../database/models');
+const { presentProduct, productInclude } = require('../database/presenters');
 
 const mainController = {
-  home: (req, res) => {
-    const products = productService.readProducts();
-    const destacados = products.slice(0, 3);
-    const caba = products.filter((item) => item.zone === 'CABA');
-    const gba = products.filter((item) => item.zone === 'GBA');
+  home: async (req, res) => {
+    const products = (await db.Product.findAll({
+      include: productInclude,
+      order: [['id', 'ASC']]
+    })).map(presentProduct);
 
     res.render('products/home', {
       title: 'RendiYa — Autos y motos para tu prueba de manejo',
-      destacados,
-      caba,
-      gba
+      destacados: products.slice(0, 3),
+      caba: products.filter((item) => item.zone === 'CABA'),
+      gba: products.filter((item) => item.zone === 'GBA')
     });
   }
 };

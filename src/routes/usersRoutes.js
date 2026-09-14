@@ -22,5 +22,9 @@ router.get('/register', guestMiddleware, usersController.register);
 router.post('/register', guestMiddleware, upload.single('image'), usersController.processRegister);
 router.get('/profile', authMiddleware, usersController.profile);
 router.get('/logout', authMiddleware, usersController.logout);
+router.get('/', authMiddleware, usersController.list);
+router.get('/:id/edit', authMiddleware, usersController.edit);
+router.put('/:id', authMiddleware, upload.single('image'), usersController.update);
+router.get('/:id', authMiddleware, usersController.detail);
 
 module.exports = router;

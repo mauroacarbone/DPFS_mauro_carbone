@@ -9,7 +9,8 @@
     <p><strong><%= user.firstName %> <%= user.lastName %></strong></p>
     <p><%= user.email %></p>
     <p class="tag"><%= user.category %></p>
-    <p><a class="btn btn-rojo" href="/products">Ver catálogo</a></p>
+    <p><a class="btn btn-rojo" href="/users/<%= user.id %>/edit">Editar perfil</a></p>
+    <p><a class="btn btn-linea" href="/users">Usuarios</a></p>
     <p><a class="btn btn-linea" href="/users/logout">Cerrar sesión</a></p>
   </main>
   <%- include('../partials/footer') %>

@@ -6,7 +6,8 @@
   <main class="wrap seccion">
     <h1>Catálogo de vehículos habilitados</h1>
     <p>
-      <% if (category) { %>Filtro: <%= category %>.<% } %>
+      <% if (q) { %>Búsqueda: <%= q %>.<% } %>
+      <% if (category) { %> Filtro: <%= category %>.<% } %>
       <% if (zone) { %> Zona: <%= zone %>.<% } %>
       <a href="/products/create">Dar de alta un vehículo</a>
     </p>

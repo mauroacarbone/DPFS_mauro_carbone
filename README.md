@@ -177,3 +177,33 @@ Si hay sesión, login y registro redirigen al perfil. Si no hay sesión, perfil 
 
 Cuenta de prueba: `mauro@rendiya.ar` / `rendiya2026`
 
+---
+
+## Sprint 6 — MySQL, Sequelize y CRUD
+
+Los JSON de `src/data/` quedan como referencia. El sitio corre contra Sequelize.
+
+En desarrollo usa **SQLite** (`src/database/rendiya.sqlite`) para poder levantar el proyecto sin instalar MySQL. En producción el dialecto es **MySQL** y la base se llama `rendiya`.
+
+| Entregable | Dónde |
+|---|---|
+| Diagrama ER | `src/database/der.html` · `src/database/der.md` · `src/database/der.pdf` |
+| Estructura SQL | `src/database/structure.sql` |
+| Datos SQL | `src/database/data.sql` |
+| Config y modelos | `src/database/` (`.sequelizerc` apunta ahí) |
+
+Tablas: `user_categories`, `users`, `product_categories`, `brands`, `colors`, `zones`, `products`, `carts`, `cart_items`.
+
+CRUD de productos (Sequelize): listar, buscar (`?q=`), detalle, alta, edición, baja.
+
+CRUD de usuarios: registro (crear), listado (`GET /users`), detalle (`GET /users/:id`), edición (`GET/PUT /users/:id/edit`).
+
+Para MySQL local:
+
+```
+mysql -u root -p < src/database/structure.sql
+mysql -u root -p < src/database/data.sql
+```
+
+Luego `NODE_ENV=production npm start` (requiere MySQL en marcha y `mysql2`).
+

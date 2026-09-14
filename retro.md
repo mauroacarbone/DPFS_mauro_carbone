@@ -138,3 +138,36 @@ Estrella de mar, a partir de registro, login y rutas protegidas.
 
 El Sprint 5 suma sesión, cookies y middlewares. Lo importante para la corrección es que el registro encripte, el login persista y las rutas redirijan bien.
 
+---
+
+# Retrospectiva — Sprint 6
+
+Estrella de mar, a partir de la base de datos y Sequelize.
+
+## Comenzar a hacer
+
+- Dibujar el DER antes de escribir `CREATE TABLE`, para no rehacer claves foráneas.
+- Acordar nombres de tablas en inglés desde el primer día, porque Sequelize las replica.
+
+## Hacer más
+
+- Dejar `structure.sql` y `data.sql` listos para el corrector, aunque en local se use SQLite.
+- Sembrar la base al arrancar si está vacía, para que `npm start` muestre el catálogo.
+
+## Continuar haciendo
+
+- Reutilizar las mismas vistas del CRUD JSON y solo cambiar el origen de los datos.
+- Proteger alta/edición/baja con sesión.
+
+## Hacer menos
+
+- Inventar tablas N:M si el JSON ya trae un solo valor (color, zona, categoría).
+
+## Dejar de hacer
+
+- Dejar el CRUD apuntando a JSON cuando el sprint pide Sequelize.
+
+## Conclusión
+
+El Sprint 6 cierra el back-end: esquema, modelos y CRUD sobre base relacional. Lo que queda para el último sprint es pulir validaciones y lo que pida la consigna de cierre.
+

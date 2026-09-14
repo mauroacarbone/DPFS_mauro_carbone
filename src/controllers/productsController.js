@@ -40,6 +40,15 @@ const productsController = {
     });
   },
 
+  cart: (req, res) => {
+    const product = products[0];
+    res.render('products/productCart', {
+      title: 'Carrito — RendiYa',
+      product,
+      instructor: true
+    });
+  },
+
   create: (req, res) => {
     res.render('products/productCreate', {
       title: 'Alta de vehículo — RendiYa'
@@ -52,7 +61,7 @@ const productsController = {
       id: nextId,
       name: req.body.name,
       description: req.body.description,
-      image: req.body.image || '/images/hero-auto.jpg',
+      image: req.body.image || '/images/etios.jpg',
       category: req.body.category,
       zone: req.body.zone || 'CABA',
       transmission: req.body.transmission,
@@ -86,7 +95,7 @@ const productsController = {
       product.transmission = req.body.transmission;
       product.price = Number(req.body.price) || product.price;
     }
-    res.redirect('/products/' + req.params.id);
+    res.redirect('/products/detail/' + req.params.id);
   }
 };
 

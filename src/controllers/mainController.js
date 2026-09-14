@@ -12,14 +12,6 @@ const mainController = {
       caba,
       gba
     });
-  },
-  cart: (req, res) => {
-    const product = products[0];
-    res.render('products/productCart', {
-      title: 'Carrito — RendiYa',
-      product,
-      instructor: true
-    });
   }
 };
 

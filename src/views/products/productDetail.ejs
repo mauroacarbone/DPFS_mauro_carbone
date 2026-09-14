@@ -19,7 +19,7 @@
         <li>Seguro de examen: <%= product.insurance ? 'Incluido' : 'No incluido' %></li>
         <li>Retiro cerca del centro de emisión</li>
       </ul>
-      <form action="/cart" method="get">
+      <form action="/products/cart" method="get">
         <div class="campo">
           <label for="fecha">Fecha del examen</label>
           <input id="fecha" type="date" name="fecha" />
@@ -35,7 +35,7 @@
         <label class="check"><input type="checkbox" name="instructor" checked /> Instructor acompañante (+$15.000)</label>
         <p><button class="btn btn-rojo" type="submit">Reservar turno</button></p>
       </form>
-      <p><a href="/products/<%= product.id %>/edit">Editar vehículo (admin)</a></p>
+      <p><a href="/products/edit/<%= product.id %>">Editar vehículo (admin)</a></p>
     </aside>
   </main>
   <%- include('../partials/footer') %>

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Isotipo RendiYa">
+  <title>Isotipo RendiYa</title>
+  <!-- App icon estilo PedidosYa: squircle rojo + volante blanco -->
+  <rect width="128" height="128" rx="32" fill="#E81C3A"/>
+  <circle cx="64" cy="64" r="34" fill="none" stroke="#FFFFFF" stroke-width="8"/>
+  <circle cx="64" cy="64" r="10" fill="#FFFFFF"/>
+  <line x1="64" y1="30" x2="64" y2="54" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round"/>
+  <line x1="38" y1="78" x2="56" y2="68" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round"/>
+  <line x1="90" y1="78" x2="72" y2="68" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round"/>
+  <!-- badge amarillo Mercado Libre -->
+  <circle cx="98" cy="30" r="16" fill="#FFE600"/>
+  <path d="M91 30 l5 5 10-12" fill="none" stroke="#121212" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

@@ -6,7 +6,7 @@
   <main class="auth admin-form">
     <h1>Editar vehículo</h1>
     <p>Corregí datos o actualizá el precio del turno.</p>
-    <form action="/products/<%= product.id %>" method="post">
+    <form action="/products/edit/<%= product.id %>" method="post">
       <div class="campo">
         <label for="name">Nombre del producto</label>
         <input id="name" name="name" type="text" value="<%= product.name %>" required />

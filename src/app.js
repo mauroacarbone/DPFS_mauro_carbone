@@ -17,6 +17,7 @@ app.use(express.static(path.join(__dirname, '..', 'public')));
 app.use('/', mainRoutes);
 app.use('/products', productsRoutes);
 app.use('/', usersRoutes);
+app.use('/users', usersRoutes);
 
 app.use((req, res) => {
   res.status(404).redirect('/');

@@ -20,7 +20,7 @@
             <button type="button" aria-label="Restar">−</button>
             <span>1</span>
             <button type="button" aria-label="Sumar">+</button>
-            <a href="/products/<%= product.id %>">Editar</a>
+            <a href="/products/detail/<%= product.id %>">Editar</a>
             <a href="/">Quitar</a>
           </div>
         </form>
@@ -32,7 +32,7 @@
       <p><span>Instructor</span><span>$<%= instructor ? '15.000' : '0' %></span></p>
       <p><strong>Total</strong><strong>$<%= (product.price + (instructor ? 15000 : 0)).toLocaleString('es-AR') %></strong></p>
       <p>
-        <a class="btn btn-rojo" href="/login">Continuar al pago</a>
+        <a class="btn btn-rojo" href="/users/login">Continuar al pago</a>
         <a class="btn btn-linea" href="/products">Seguir viendo vehículos</a>
       </p>
     </section>

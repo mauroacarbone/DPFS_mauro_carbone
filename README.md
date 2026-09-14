@@ -2,7 +2,7 @@
 
 Proyecto final Full Stack de Digital House (DPFS). Son **7 sprints**.
 
-ARendiYa es una plataforma e-commerce orientada al alquiler temporal de autos y motos exclusivamente para el día del examen práctico de conducir en CABA y Gran Buenos Aires (GBA).
+RendiYa es una plataforma e-commerce orientada al alquiler temporal de autos y motos exclusivamente para el día del examen práctico de conducir en CABA y Gran Buenos Aires (GBA).
 
 Nace para resolver una problemática muy común en el rubro vial: muchas personas aprueban el examen teórico pero no disponen de un vehículo en regla, o prefieren no utilizar el auto/moto familiar. Un alquiler de autos tradicional (rent-a-car) no cubre esta necesidad, ya que opera por días completos y sin coordinación con las sedes de emisión. RendiYa ofrece turnos específicos adaptados al trámite oficial.
 

@@ -5,8 +5,8 @@
   <%- include('../partials/header') %>
   <main class="auth admin-form">
     <h1>Alta de vehículo</h1>
-    <p>Formulario de administrador para incorporar una unidad al catálogo.</p>
-    <form action="/products" method="post">
+    <p>Los datos se guardan en products.json (Sprint 4).</p>
+    <form action="/products" method="post" enctype="multipart/form-data">
       <div class="campo">
         <label for="name">Nombre del producto</label>
         <input id="name" name="name" type="text" required />
@@ -16,8 +16,12 @@
         <textarea id="description" name="description" rows="4" required></textarea>
       </div>
       <div class="campo">
-        <label for="image">Imagen (ruta)</label>
-        <input id="image" name="image" type="text" placeholder="/images/cronos.jpg" />
+        <label for="imageFile">Imagen</label>
+        <input id="imageFile" name="imageFile" type="file" accept="image/*" />
+      </div>
+      <div class="campo">
+        <label for="image">O ruta de imagen</label>
+        <input id="image" name="image" type="text" placeholder="/images/etios.jpg" />
       </div>
       <div class="campo">
         <label for="category">Categoría</label>
@@ -25,6 +29,10 @@
           <option value="Auto">Auto</option>
           <option value="Moto">Moto</option>
         </select>
+      </div>
+      <div class="campo">
+        <label for="colors">Color</label>
+        <input id="colors" name="colors" type="text" placeholder="Blanco, Gris, Rojo…" />
       </div>
       <div class="campo">
         <label for="zone">Zona</label>

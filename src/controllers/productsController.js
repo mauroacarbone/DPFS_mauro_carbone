@@ -1,13 +1,36 @@
-const products = require('../data/products');
+const productService = require('../services/productService');
 
-function findById(id) {
-  return products.find((item) => item.id === Number(id));
+function imageFromRequest(req, currentImage) {
+  if (req.file) {
+    return '/images/' + req.file.filename;
+  }
+  if (req.body.image && req.body.image.trim()) {
+    return req.body.image.trim();
+  }
+  return currentImage || '/images/etios.jpg';
+}
+
+function payloadFromBody(req, current) {
+  const category = req.body.category || (current && current.category) || 'Auto';
+  return {
+    name: req.body.name,
+    description: req.body.description,
+    image: imageFromRequest(req, current && current.image),
+    category,
+    colors: req.body.colors || 'Blanco',
+    price: Number(req.body.price) || 0,
+    zone: req.body.zone || 'CABA',
+    transmission: req.body.transmission || 'Manual',
+    license: category === 'Moto' ? 'Clase A' : 'Clase B',
+    vtv: true,
+    insurance: true
+  };
 }
 
 const productsController = {
   list: (req, res) => {
     const { category, zone, q } = req.query;
-    let list = [...products];
+    let list = productService.readProducts();
 
     if (category) {
       list = list.filter((item) => item.category === category);
@@ -30,7 +53,7 @@ const productsController = {
   },
 
   detail: (req, res) => {
-    const product = findById(req.params.id);
+    const product = productService.findById(req.params.id);
     if (!product) {
       return res.redirect('/products');
     }
@@ -41,7 +64,8 @@ const productsController = {
   },
 
   cart: (req, res) => {
-    const product = products[0];
+    const products = productService.readProducts();
+    const product = productService.findById(req.query.id) || products[0];
     res.render('products/productCart', {
       title: 'Carrito — RendiYa',
       product,
@@ -56,25 +80,18 @@ const productsController = {
   },
 
   store: (req, res) => {
-    const nextId = products.length ? Math.max(...products.map((item) => item.id)) + 1 : 1;
-    products.push({
-      id: nextId,
-      name: req.body.name,
-      description: req.body.description,
-      image: req.body.image || '/images/etios.jpg',
-      category: req.body.category,
-      zone: req.body.zone || 'CABA',
-      transmission: req.body.transmission,
-      license: req.body.category === 'Moto' ? 'Clase A' : 'Clase B',
-      price: Number(req.body.price) || 0,
-      vtv: true,
-      insurance: true
-    });
-    res.redirect('/products');
+    const products = productService.readProducts();
+    const product = {
+      id: productService.nextId(products),
+      ...payloadFromBody(req)
+    };
+    products.push(product);
+    productService.writeProducts(products);
+    res.redirect('/products/' + product.id);
   },
 
   edit: (req, res) => {
-    const product = findById(req.params.id);
+    const product = productService.findById(req.params.id);
     if (!product) {
       return res.redirect('/products');
     }
@@ -85,17 +102,23 @@ const productsController = {
   },
 
   update: (req, res) => {
-    const product = findById(req.params.id);
-    if (product) {
-      product.name = req.body.name;
-      product.description = req.body.description;
-      product.image = req.body.image || product.image;
-      product.category = req.body.category;
-      product.zone = req.body.zone || product.zone;
-      product.transmission = req.body.transmission;
-      product.price = Number(req.body.price) || product.price;
+    const products = productService.readProducts();
+    const index = products.findIndex((item) => item.id === Number(req.params.id));
+    if (index === -1) {
+      return res.redirect('/products');
     }
-    res.redirect('/products/detail/' + req.params.id);
+    products[index] = {
+      ...products[index],
+      ...payloadFromBody(req, products[index])
+    };
+    productService.writeProducts(products);
+    res.redirect('/products/' + req.params.id);
+  },
+
+  destroy: (req, res) => {
+    const products = productService.readProducts().filter((item) => item.id !== Number(req.params.id));
+    productService.writeProducts(products);
+    res.redirect('/products');
   }
 };
 

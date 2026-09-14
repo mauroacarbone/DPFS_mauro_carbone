@@ -1,0 +1,56 @@
+[
+  {
+    "id": 1,
+    "firstName": "Mauro",
+    "lastName": "Carbone",
+    "email": "mauro@rendiya.ar",
+    "password": "rendiya2026",
+    "category": "admin",
+    "image": "/images/favicon.png"
+  },
+  {
+    "id": 2,
+    "firstName": "Lucía",
+    "lastName": "Benítez",
+    "email": "lucia.benitez@mail.com",
+    "password": "lucia123",
+    "category": "client",
+    "image": "/images/favicon.png"
+  },
+  {
+    "id": 3,
+    "firstName": "Diego",
+    "lastName": "Fernández",
+    "email": "diego.fernandez@mail.com",
+    "password": "diego123",
+    "category": "client",
+    "image": "/images/favicon.png"
+  },
+  {
+    "id": 4,
+    "firstName": "Camila",
+    "lastName": "Sosa",
+    "email": "camila.sosa@mail.com",
+    "password": "camila123",
+    "category": "instructor",
+    "image": "/images/favicon.png"
+  },
+  {
+    "id": 5,
+    "firstName": "Nicolás",
+    "lastName": "Paz",
+    "email": "nicolas.paz@mail.com",
+    "password": "nico123",
+    "category": "client",
+    "image": "/images/favicon.png"
+  },
+  {
+    "id": 6,
+    "firstName": "Sofía",
+    "lastName": "Ramos",
+    "email": "sofia.ramos@mail.com",
+    "password": "sofia123",
+    "category": "client",
+    "image": "/images/favicon.png"
+  }
+]

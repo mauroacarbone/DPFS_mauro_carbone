@@ -5,8 +5,9 @@
   <%- include('../partials/header') %>
   <main class="auth admin-form">
     <h1>Editar vehículo</h1>
-    <p>Corregí datos o actualizá el precio del turno.</p>
-    <form action="/products/edit/<%= product.id %>" method="post">
+    <p>PUT a /products/<%= product.id %>. También podés eliminar la unidad.</p>
+    <form action="/products/<%= product.id %>?_method=PUT" method="post" enctype="multipart/form-data">
+      <input type="hidden" name="_method" value="PUT" />
       <div class="campo">
         <label for="name">Nombre del producto</label>
         <input id="name" name="name" type="text" value="<%= product.name %>" required />
@@ -16,7 +17,11 @@
         <textarea id="description" name="description" rows="4" required><%= product.description %></textarea>
       </div>
       <div class="campo">
-        <label for="image">Imagen (ruta)</label>
+        <label for="imageFile">Nueva imagen</label>
+        <input id="imageFile" name="imageFile" type="file" accept="image/*" />
+      </div>
+      <div class="campo">
+        <label for="image">Ruta de imagen</label>
         <input id="image" name="image" type="text" value="<%= product.image %>" />
       </div>
       <div class="campo">
@@ -25,6 +30,10 @@
           <option value="Auto" <%= product.category === 'Auto' ? 'selected' : '' %>>Auto</option>
           <option value="Moto" <%= product.category === 'Moto' ? 'selected' : '' %>>Moto</option>
         </select>
+      </div>
+      <div class="campo">
+        <label for="colors">Color</label>
+        <input id="colors" name="colors" type="text" value="<%= product.colors %>" />
       </div>
       <div class="campo">
         <label for="zone">Zona</label>
@@ -45,6 +54,10 @@
         <input id="price" name="price" type="number" min="0" value="<%= product.price %>" required />
       </div>
       <p><button class="btn btn-rojo" type="submit">Guardar cambios</button></p>
+    </form>
+    <form action="/products/<%= product.id %>?_method=DELETE" method="post" onsubmit="return confirm('¿Eliminar este vehículo?');">
+      <input type="hidden" name="_method" value="DELETE" />
+      <p><button class="btn btn-linea" type="submit">Eliminar vehículo</button></p>
     </form>
   </main>
   <%- include('../partials/footer') %>

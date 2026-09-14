@@ -14,6 +14,7 @@
       <p><%= product.description %></p>
       <p class="precio">$<%= product.price.toLocaleString('es-AR') %> por turno</p>
       <ul class="lista">
+        <li>Color: <%= product.colors %></li>
         <li>Transmisión: <%= product.transmission %></li>
         <li>VTV: <%= product.vtv ? 'Vigente' : 'A confirmar' %></li>
         <li>Seguro de examen: <%= product.insurance ? 'Incluido' : 'No incluido' %></li>
@@ -35,7 +36,13 @@
         <label class="check"><input type="checkbox" name="instructor" checked /> Instructor acompañante (+$15.000)</label>
         <p><button class="btn btn-rojo" type="submit">Reservar turno</button></p>
       </form>
-      <p><a href="/products/edit/<%= product.id %>">Editar vehículo (admin)</a></p>
+      <p>
+        <a class="btn btn-linea" href="/products/<%= product.id %>/edit">Editar vehículo</a>
+      </p>
+      <form action="/products/<%= product.id %>?_method=DELETE" method="post" onsubmit="return confirm('¿Eliminar este vehículo?');">
+        <input type="hidden" name="_method" value="DELETE" />
+        <button class="btn btn-linea" type="submit">Eliminar</button>
+      </form>
     </aside>
   </main>
   <%- include('../partials/footer') %>

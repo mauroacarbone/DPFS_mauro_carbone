@@ -144,3 +144,19 @@ Abrir http://localhost:3000
 | Usuarios | `src/views/users/` |
 | CSS e imágenes | `public/` |
 
+---
+
+## Sprint 4 — JSON y CRUD de productos
+
+Datos en `src/data/products.json` y `src/data/users.json`.
+
+Rutas de productos:
+
+- `GET /products` listado
+- `GET /products/create` alta
+- `POST /products` guardar alta
+- `GET /products/:id` detalle
+- `GET /products/:id/edit` edición
+- `PUT /products/:id` guardar edición
+- `DELETE /products/:id` baja
+

@@ -4,6 +4,6 @@
     <span class="tag"><%= product.category %> · <%= product.zone %> · <%= product.license %></span>
     <h3><%= product.name %></h3>
     <p class="precio">$<%= product.price.toLocaleString('es-AR') %> / turno</p>
-    <a class="btn btn-rojo" href="/products/detail/<%= product.id %>">Ver detalle</a>
+    <a class="btn btn-rojo" href="/products/<%= product.id %>">Ver detalle</a>
   </div>
 </article>

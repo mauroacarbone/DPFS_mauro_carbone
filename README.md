@@ -40,7 +40,7 @@ Van a entrar apurados, no a mirar un catálogo de lujo. Entonces:
 
 ## Sobre mí
 
-Soy Mauro Carbone, estoy finalizando el curso de Full Stack en Digital House. Este proyecto me sirve para aplicar Node y React, pero también sale de algo que veo de verdad: en la autoescuela de mi primo falta un servicio simple para el que está a punto de rendir y no tiene con qué presentarse, asi como tambien a aquellos que se prensentan a rendir sin un vehiculo pertinente. 
+Soy Mauro Carbone, desarrollador Full Stack en formación en Digital House. Este proyecto representa la integración práctica de tecnologías como Node.js y React, respondiendo a una problemática real observada en el rubro vial y de autoescuelas: la falta de un servicio ágil para quienes están listos para rendir el examen práctico pero no cuentan con un vehículo propio o adecuado para la prueba. RendiYa nace para transformar esa necesidad recurrente en una solución digital accesible y eficiente.
 
 ---
 

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>RendiYa · Identidad visual</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --rojo: #E81C3A;
+      --amarillo: #FFE600;
+      --azul: #3483FA;
+      --negro: #121212;
+      --gris: #6B6B6B;
+      --fondo: #F7F7F7;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, sans-serif;
+      background: var(--fondo);
+      color: var(--negro);
+      line-height: 1.5;
+    }
+    .wrap { max-width: 980px; margin: 0 auto; padding: 32px 20px 64px; }
+    h1, h2, .logo-word { font-family: Nunito, sans-serif; }
+    h1 { font-weight: 800; margin: 0 0 8px; }
+    h2 { font-weight: 800; margin: 40px 0 12px; font-size: 22px; }
+    .lead { color: var(--gris); margin-top: 0; }
+    .card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 16px;
+      box-shadow: 0 8px 24px rgba(0,0,0,.04);
+    }
+    .logo-word {
+      font-weight: 800;
+      font-size: 64px;
+      letter-spacing: -2px;
+      line-height: 1;
+      margin: 0;
+    }
+    .logo-word span { color: var(--rojo); }
+    .row { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
+    .preview {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 140px;
+      border-radius: 16px;
+      padding: 20px;
+      flex: 1;
+      min-width: 240px;
+    }
+    .preview img { max-height: 96px; width: auto; }
+    .bg-rojo { background: var(--rojo); }
+    .bg-amarillo { background: var(--amarillo); }
+    .bg-negro { background: var(--negro); }
+    .swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; }
+    .swatch { border-radius: 12px; overflow: hidden; border: 1px solid #eee; }
+    .chip { height: 72px; }
+    .swatch p { margin: 0; padding: 10px; font-size: 13px; }
+    .tipo-display {
+      font-family: Nunito, sans-serif;
+      font-weight: 800;
+      font-size: 40px;
+      letter-spacing: -1px;
+      margin: 0;
+    }
+    .tipo-body { font-size: 16px; max-width: 52ch; }
+    .btn {
+      display: inline-block;
+      background: var(--rojo);
+      color: #fff;
+      font-family: Nunito, sans-serif;
+      font-weight: 800;
+      border: none;
+      border-radius: 999px;
+      padding: 12px 22px;
+      font-size: 16px;
+    }
+    .btn-ya {
+      background: var(--amarillo);
+      color: var(--negro);
+    }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    td, th { text-align: left; padding: 8px 0; border-bottom: 1px solid #eee; }
+    code { font-size: 12px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>RendiYa · Design system (Sprint 1)</h1>
+    <p class="lead">Identidad opcional: logo, colores y tipografías. Inspiración PedidosYa (rojo, “Ya”, formas redondas) y Mercado Libre (amarillo, confianza, CTA amigable).</p>
+
+    <h2>Logo</h2>
+    <div class="card">
+      <p class="logo-word">Rendi<span>Ya</span></p>
+      <p>Wordmark: <strong>Rendi</strong> en negro, <strong>Ya</strong> en rojo. Misma lógica que pedidos<em>ya</em>: el “Ya” es el cierre de marca.</p>
+      <div class="row">
+        <div class="preview" style="background:#fff;border:1px solid #eee">
+          <img src="logo.svg" alt="Logo RendiYa" />
+        </div>
+        <div class="preview bg-rojo">
+          <img src="logo-rojo.svg" alt="Logo RendiYa sobre rojo" />
+        </div>
+      </div>
+      <div class="row" style="margin-top:16px">
+        <div class="preview bg-amarillo">
+          <img src="isotipo.svg" alt="Isotipo" height="96" />
+        </div>
+        <div class="preview bg-negro">
+          <img src="isotipo-amarillo.svg" alt="Isotipo amarillo" />
+        </div>
+      </div>
+      <p>Isotipo: squircle rojo (app icon tipo PedidosYa) + volante + tilde amarilla (listo para rendir, guiño Mercado Libre).</p>
+    </div>
+
+    <h2>Colores</h2>
+    <div class="card">
+      <div class="swatches">
+        <div class="swatch"><div class="chip" style="background:#E81C3A"></div><p><strong>Rojo RendiYa</strong><br /><code>#E81C3A</code><br />Marca, botones, Ya</p></div>
+        <div class="swatch"><div class="chip" style="background:#FFE600"></div><p><strong>Amarillo</strong><br /><code>#FFE600</code><br />Badges, éxito, seña</p></div>
+        <div class="swatch"><div class="chip" style="background:#3483FA"></div><p><strong>Azul</strong><br /><code>#3483FA</code><br />Links, confianza</p></div>
+        <div class="swatch"><div class="chip" style="background:#121212"></div><p><strong>Negro</strong><br /><code>#121212</code><br />Títulos, Rendi</p></div>
+        <div class="swatch"><div class="chip" style="background:#6B6B6B"></div><p><strong>Gris</strong><br /><code>#6B6B6B</code><br />Textos secundarios</p></div>
+        <div class="swatch"><div class="chip" style="background:#FFFFFF;border-bottom:1px solid #eee"></div><p><strong>Blanco</strong><br /><code>#FFFFFF</code><br />Fondos</p></div>
+      </div>
+    </div>
+
+    <h2>Tipografías</h2>
+    <div class="card">
+      <p class="tipo-display">Nunito ExtraBold</p>
+      <p>Logo, títulos y botones. Redondeada, cercana a PedidosYa / Mercado Libre.</p>
+      <p class="tipo-body">Inter Regular — textos de producto, formularios y ayuda. Que se lea rápido el día del examen, no que “diseñe” de más.</p>
+      <p><span class="btn">Reservar turno</span> &nbsp; <span class="btn btn-ya">Rendir Ya</span></p>
+      <table>
+        <tr><th>Uso</th><th>Fuente</th><th>Peso</th></tr>
+        <tr><td>Logo / H1</td><td>Nunito</td><td>800</td></tr>
+        <tr><td>Botones</td><td>Nunito</td><td>800</td></tr>
+        <tr><td>Cuerpo</td><td>Inter</td><td>400 / 500</td></tr>
+      </table>
+    </div>
+
+    <h2>Archivos</h2>
+    <div class="card">
+      <ul>
+        <li><a href="logo.svg">logo.svg</a> — wordmark negro + rojo</li>
+        <li><a href="logo-rojo.svg">logo-rojo.svg</a> — wordmark blanco sobre rojo</li>
+        <li><a href="isotipo.svg">isotipo.svg</a> — icono app rojo</li>
+        <li><a href="isotipo-amarillo.svg">isotipo-amarillo.svg</a> — icono amarillo</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

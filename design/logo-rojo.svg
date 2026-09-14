@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 160" role="img" aria-label="RendiYa">
+  <title>RendiYa sobre rojo</title>
+  <rect width="640" height="160" rx="28" fill="#E81C3A"/>
+  <text
+    x="320"
+    y="108"
+    text-anchor="middle"
+    font-family="Nunito, Arial Rounded MT Bold, Arial, sans-serif"
+    font-weight="800"
+    font-size="92"
+    letter-spacing="-3"
+    fill="#FFFFFF">RendiYa</text>
+</svg>

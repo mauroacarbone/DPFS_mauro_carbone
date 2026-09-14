@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="es">
+<%- include('../partials/head') %>
+<body>
+  <%- include('../partials/header') %>
+  <main class="auth perfil">
+    <h1>Mi perfil</h1>
+    <img class="avatar" src="<%= user.image %>" alt="Foto de <%= user.firstName %>" />
+    <p><strong><%= user.firstName %> <%= user.lastName %></strong></p>
+    <p><%= user.email %></p>
+    <p class="tag"><%= user.category %></p>
+    <p><a class="btn btn-rojo" href="/products">Ver catálogo</a></p>
+    <p><a class="btn btn-linea" href="/users/logout">Cerrar sesión</a></p>
+  </main>
+  <%- include('../partials/footer') %>
+</body>
+</html>

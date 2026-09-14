@@ -4,7 +4,7 @@
     "firstName": "Mauro",
     "lastName": "Carbone",
     "email": "mauro@rendiya.ar",
-    "password": "rendiya2026",
+    "password": "$2b$10$kUVI/8fjPJPmk1ZY8rSagOZHlxOUXXKdjxLWFKVGcEAxRWU4WMPly",
     "category": "admin",
     "image": "/images/favicon.png"
   },
@@ -13,7 +13,7 @@
     "firstName": "Lucía",
     "lastName": "Benítez",
     "email": "lucia.benitez@mail.com",
-    "password": "lucia123",
+    "password": "$2b$10$YSxQQY74GmGMzTv7QwF2AecbsNc.fVW/OFIQi1dzY1jmNZYUkg9Ei",
     "category": "client",
     "image": "/images/favicon.png"
   },
@@ -22,7 +22,7 @@
     "firstName": "Diego",
     "lastName": "Fernández",
     "email": "diego.fernandez@mail.com",
-    "password": "diego123",
+    "password": "$2b$10$8YYqGiNy2s8gxOMzmgxrn.UJZd8ibHpm3xvF19DaiimMWSu5SAr76",
     "category": "client",
     "image": "/images/favicon.png"
   },
@@ -31,7 +31,7 @@
     "firstName": "Camila",
     "lastName": "Sosa",
     "email": "camila.sosa@mail.com",
-    "password": "camila123",
+    "password": "$2b$10$DoJJ0.8iq/Ul9dea8gJZduQbUARFV2vKzGtvwfNR6oBkn0rYMKywu",
     "category": "instructor",
     "image": "/images/favicon.png"
   },
@@ -40,7 +40,7 @@
     "firstName": "Nicolás",
     "lastName": "Paz",
     "email": "nicolas.paz@mail.com",
-    "password": "nico123",
+    "password": "$2b$10$bV2WbUZCJwH5jPuxpOtmKuPlJgmdXIDlGllKQdrTPAkfmYD7EMZ/y",
     "category": "client",
     "image": "/images/favicon.png"
   },
@@ -49,7 +49,16 @@
     "firstName": "Sofía",
     "lastName": "Ramos",
     "email": "sofia.ramos@mail.com",
-    "password": "sofia123",
+    "password": "$2b$10$U6q3yD7SYVqM5SrG6sBpJebHplaqdcyHQQzhxS3trimfnmQszJG8q",
+    "category": "client",
+    "image": "/images/favicon.png"
+  },
+  {
+    "id": 7,
+    "firstName": "Mauro",
+    "lastName": "Carbone",
+    "email": "mauroacarbone@gmail.com",
+    "password": "$2b$10$kM.B16BkVhSvy0rWlbnFu.hEWNap5MVeMhWks7b4WAdts5HaJBAKS",
     "category": "client",
     "image": "/images/favicon.png"
   }

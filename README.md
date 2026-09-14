@@ -160,3 +160,20 @@ Rutas de productos:
 - `PUT /products/:id` guardar edición
 - `DELETE /products/:id` baja
 
+---
+
+## Sprint 5 — Usuarios, sesión y middlewares
+
+Registro, login, perfil y logout. Las contraseñas se guardan con **bcrypt**. El alta/edición de vehículos pide sesión.
+
+Rutas de usuarios:
+
+- `GET /users/register` y `POST /users/register` (solo huéspedes)
+- `GET /users/login` y `POST /users/login` (solo huéspedes)
+- `GET /users/profile` (solo logueados)
+- `GET /users/logout` (solo logueados)
+
+Si hay sesión, login y registro redirigen al perfil. Si no hay sesión, perfil y logout redirigen al login. El checkbox **Recordarme** deja una cookie `rememberEmail`.
+
+Cuenta de prueba: `mauro@rendiya.ar` / `rendiya2026`
+

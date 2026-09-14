@@ -72,3 +72,69 @@ Estrella de mar, a partir de la maqueta HTML y CSS.
 
 El Sprint 2 entregó la maqueta, la retro del Sprint 1, los estilos y el enlace al tablero. El atraso estuvo en organizar el Project y en no traer a tiempo los cambios hechos en GitHub. En el Sprint 3 conviene armar Express + EJS **por etapas** (retro y tablero, motor de plantillas, carpetas, parciales, altas/edición), para no romper la maqueta de un saque.
 
+---
+
+# Retrospectiva — Sprint 4
+
+Estrella de mar, a partir del JSON y el CRUD de productos.
+
+## Comenzar a hacer
+
+- Armar el tablero del sprint **antes** de tocar código.
+- Probar POST, PUT y DELETE en el mismo proceso de Node que se acaba de levantar.
+
+## Hacer más
+
+- Dejar las rutas REST como las pide Digital House (`/products/:id`, `/products/:id/edit`).
+- Documentar en el README las rutas que el corrector va a abrir.
+
+## Continuar haciendo
+
+- `git pull` antes de trabajar si el README se toca en GitHub.
+- Reusar el CSS y los parciales, no rehacer páginas.
+
+## Hacer menos
+
+- Tener dos servidores (puerto 3000 y 3001) al mismo tiempo.
+
+## Dejar de hacer
+
+- Dejar el Sprint commiteado solo en local.
+
+## Conclusión
+
+El Sprint 4 cerró el CRUD sobre JSON. El Sprint 5 pide la misma disciplina para usuarios: servicio, controlador, middlewares y tablero al inicio.
+
+---
+
+# Retrospectiva — Sprint 5
+
+Estrella de mar, a partir de registro, login y rutas protegidas.
+
+## Comenzar a hacer
+
+- Definir de entrada qué rutas son de huésped, cuáles de usuario y cuáles públicas.
+- Hashear las contraseñas de los usuarios de prueba, no dejar texto plano.
+
+## Hacer más
+
+- Mostrar el nombre en el header cuando hay sesión, para que se note el login.
+- Probar el checkbox “Recordarme” cerrando el navegador o borrando la cookie de sesión.
+
+## Continuar haciendo
+
+- Replicar la estructura de productos (servicio JSON + multer + vistas).
+- Actualizar el Project de GitHub con issues del sprint.
+
+## Hacer menos
+
+- Dejar vistas de error “de maqueta” en login/registro cuando ya hay validación real.
+
+## Dejar de hacer
+
+- Confundir “levantar el servidor” con “subir a GitHub”.
+
+## Conclusión
+
+El Sprint 5 suma sesión, cookies y middlewares. Lo importante para la corrección es que el registro encripte, el login persista y las rutas redirijan bien.
+

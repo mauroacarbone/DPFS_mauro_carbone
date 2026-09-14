@@ -5,37 +5,25 @@
   <%- include('../partials/header') %>
   <main class="auth">
     <h1>Ingresar</h1>
-    <p>Entrá para ver tu historial de reservas y continuar el pago de la seña.</p>
-    <% if (showErrors) { %>
-      <div class="banner-error" role="alert">
-        Email o contraseña incorrectos. (Vista de error; el login todavía no está conectado a una base.)
-      </div>
+    <p>Entrá para ver tu perfil y continuar el pago de la seña.</p>
+    <% if (errors.credentials) { %>
+      <div class="banner-error" role="alert"><%= errors.credentials %></div>
     <% } %>
-    <form action="/login" method="get">
-      <div class="campo error">
+    <form action="/users/login" method="post">
+      <div class="campo <%= errors.credentials ? 'error' : '' %>">
         <label for="email">Email</label>
-        <input id="email" type="email" name="email" value="mauro@mail.com" aria-invalid="true" />
-        <p class="msg-error">No encontramos una cuenta con este email.</p>
+        <input id="email" type="email" name="email" value="<%= old.email || '' %>" required />
       </div>
       <div class="campo">
-        <label for="pass">Contraseña</label>
-        <input id="pass" type="password" name="password" />
+        <label for="password">Contraseña</label>
+        <input id="password" type="password" name="password" required />
       </div>
       <label class="check">
-        <input type="checkbox" name="remember" checked />
+        <input type="checkbox" name="remember" value="on" />
         Recordarme en este dispositivo
       </label>
       <p><button class="btn btn-rojo" type="submit">Ingresar</button></p>
     </form>
-    <section class="recuperar" id="recuperar">
-      <h2>¿Olvidaste tu contraseña?</h2>
-      <p>Ingresá el email y te enviamos un enlace para recuperarla.</p>
-      <div class="campo">
-        <label for="recupera">Email de la cuenta</label>
-        <input id="recupera" type="email" placeholder="tu@correo.com" />
-      </div>
-      <button class="btn btn-amarillo" type="button">Enviar enlace de recuperación</button>
-    </section>
     <p>¿No tenés cuenta? <a href="/users/register">Registrate</a></p>
   </main>
   <%- include('../partials/footer') %>

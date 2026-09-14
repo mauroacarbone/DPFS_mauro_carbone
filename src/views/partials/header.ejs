@@ -13,8 +13,13 @@
       <a href="/products">Catálogo</a>
     </nav>
     <div class="header-actions">
-      <a class="btn btn-ghost" href="/users/login">Ingresar</a>
-      <a class="btn btn-linea" href="/users/register">Registro</a>
+      <% if (user) { %>
+        <a class="btn btn-ghost" href="/users/profile"><%= user.firstName %></a>
+        <a class="btn btn-linea" href="/users/logout">Salir</a>
+      <% } else { %>
+        <a class="btn btn-ghost" href="/users/login">Ingresar</a>
+        <a class="btn btn-linea" href="/users/register">Registro</a>
+      <% } %>
       <a class="cart-link" href="/products/cart" aria-label="Carrito">🛒<span class="cart-badge">1</span></a>
       <label class="burger" for="nav-toggle" aria-label="Abrir menú"><span></span><span></span><span></span></label>
     </div>
@@ -24,9 +29,14 @@
     <a href="/products?category=Auto">Autos</a>
     <a href="/products?category=Moto">Motos</a>
     <a href="/products">Catálogo</a>
-    <a href="/users/login">Ingresar</a>
-    <a href="/users/register">Registro</a>
+    <% if (user) { %>
+      <a href="/users/profile">Mi perfil</a>
+      <a href="/users/logout">Salir</a>
+      <a href="/products/create">Alta de vehículo</a>
+    <% } else { %>
+      <a href="/users/login">Ingresar</a>
+      <a href="/users/register">Registro</a>
+    <% } %>
     <a href="/products/cart">Carrito</a>
-    <a href="/products/create">Alta de vehículo</a>
   </nav>
 </header>

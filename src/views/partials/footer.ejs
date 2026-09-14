@@ -9,9 +9,14 @@
       <p><strong>Sitio</strong></p>
       <p><a href="/">Inicio</a></p>
       <p><a href="/products">Catálogo</a></p>
-      <p><a href="/users/register">Registro</a></p>
-      <p><a href="/users/login">Ingresar</a></p>
-      <p><a href="/products/create">Administración</a></p>
+      <% if (user) { %>
+        <p><a href="/users/profile">Mi perfil</a></p>
+        <p><a href="/users/logout">Salir</a></p>
+        <p><a href="/products/create">Administración</a></p>
+      <% } else { %>
+        <p><a href="/users/register">Registro</a></p>
+        <p><a href="/users/login">Ingresar</a></p>
+      <% } %>
     </div>
     <div>
       <p><strong>Examen práctico</strong></p>
@@ -19,7 +24,7 @@
       <p>Contacto: hola@rendiya.ar</p>
       <p>Redes: Instagram · Facebook</p>
       <p><a href="#">Términos del servicio para el práctico</a></p>
-      <p>Digital House · DPFS · Sprint 3</p>
+      <p>Digital House · DPFS · Sprint 5</p>
     </div>
   </div>
 </footer>

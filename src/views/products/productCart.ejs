@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<%- include('../partials/head') %>
+<body>
+  <%- include('../partials/header') %>
+  <main class="wrap" style="padding: 28px 0 56px">
+    <h1>Carrito de reservas</h1>
+    <p>Resumen del turno. Podés sumar o quitar acompañante instructor.</p>
+    <article class="item-carrito">
+      <img src="<%= product.image %>" alt="<%= product.name %>" />
+      <div>
+        <h2><%= product.name %></h2>
+        <p class="tag"><%= product.zone %> · turno de examen</p>
+        <form method="get" action="/cart">
+          <label class="check">
+            <input type="checkbox" name="instructor" <%= instructor ? 'checked' : '' %> />
+            Instructor acompañante (+$15.000)
+          </label>
+          <div class="qty">
+            <button type="button" aria-label="Restar">−</button>
+            <span>1</span>
+            <button type="button" aria-label="Sumar">+</button>
+            <a href="/products/<%= product.id %>">Editar</a>
+            <a href="/">Quitar</a>
+          </div>
+        </form>
+      </div>
+      <p class="precio">$<%= (product.price + (instructor ? 15000 : 0)).toLocaleString('es-AR') %></p>
+    </article>
+    <section class="totales">
+      <p><span>Turno del vehículo</span><span>$<%= product.price.toLocaleString('es-AR') %></span></p>
+      <p><span>Instructor</span><span>$<%= instructor ? '15.000' : '0' %></span></p>
+      <p><strong>Total</strong><strong>$<%= (product.price + (instructor ? 15000 : 0)).toLocaleString('es-AR') %></strong></p>
+      <p>
+        <a class="btn btn-rojo" href="/login">Continuar al pago</a>
+        <a class="btn btn-linea" href="/products">Seguir viendo vehículos</a>
+      </p>
+    </section>
+  </main>
+  <%- include('../partials/footer') %>
+</body>
+</html>

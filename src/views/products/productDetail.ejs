@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<%- include('../partials/head') %>
+<body>
+  <%- include('../partials/header') %>
+  <main class="wrap detalle">
+    <div class="galeria">
+      <p><a href="/">Inicio</a> / <a href="/products">Vehículos</a> / <%= product.name %></p>
+      <img src="<%= product.image %>" alt="<%= product.name %>" />
+    </div>
+    <aside class="panel">
+      <span class="tag"><%= product.category %> · <%= product.zone %> · <%= product.license %></span>
+      <h1><%= product.name %></h1>
+      <p><%= product.description %></p>
+      <p class="precio">$<%= product.price.toLocaleString('es-AR') %> por turno</p>
+      <ul class="lista">
+        <li>Transmisión: <%= product.transmission %></li>
+        <li>VTV: <%= product.vtv ? 'Vigente' : 'A confirmar' %></li>
+        <li>Seguro de examen: <%= product.insurance ? 'Incluido' : 'No incluido' %></li>
+        <li>Retiro cerca del centro de emisión</li>
+      </ul>
+      <form action="/cart" method="get">
+        <div class="campo">
+          <label for="fecha">Fecha del examen</label>
+          <input id="fecha" type="date" name="fecha" />
+        </div>
+        <div class="campo">
+          <label for="franja">Franja horaria</label>
+          <select id="franja" name="franja">
+            <option>08:00 – 11:00</option>
+            <option>11:00 – 14:00</option>
+            <option>14:00 – 17:00</option>
+          </select>
+        </div>
+        <label class="check"><input type="checkbox" name="instructor" checked /> Instructor acompañante (+$15.000)</label>
+        <p><button class="btn btn-rojo" type="submit">Reservar turno</button></p>
+      </form>
+      <p><a href="/products/<%= product.id %>/edit">Editar vehículo (admin)</a></p>
+    </aside>
+  </main>
+  <%- include('../partials/footer') %>
+</body>
+</html>

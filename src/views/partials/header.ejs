@@ -1,0 +1,32 @@
+<header class="site-header">
+  <input class="nav-toggle" type="checkbox" id="nav-toggle" />
+  <div class="header-inner wrap">
+    <a class="logo-word" href="/">Rendi<span>Ya</span></a>
+    <form class="search-form" action="/products" method="get" role="search">
+      <input type="search" name="q" placeholder="Buscar vehículo" value="<%= typeof q !== 'undefined' ? q : '' %>" />
+      <button class="btn btn-linea" type="submit">Buscar</button>
+    </form>
+    <nav class="nav-desk">
+      <a href="/">Inicio</a>
+      <a href="/products?category=Auto">Autos</a>
+      <a href="/products?category=Moto">Motos</a>
+      <a href="/products">Catálogo</a>
+    </nav>
+    <div class="header-actions">
+      <a class="btn btn-ghost" href="/login">Ingresar</a>
+      <a class="btn btn-linea" href="/register">Registro</a>
+      <a class="cart-link" href="/cart" aria-label="Carrito">🛒<span class="cart-badge">1</span></a>
+      <label class="burger" for="nav-toggle" aria-label="Abrir menú"><span></span><span></span><span></span></label>
+    </div>
+  </div>
+  <nav class="nav-mobile wrap">
+    <a href="/">Inicio</a>
+    <a href="/products?category=Auto">Autos</a>
+    <a href="/products?category=Moto">Motos</a>
+    <a href="/products">Catálogo</a>
+    <a href="/login">Ingresar</a>
+    <a href="/register">Registro</a>
+    <a href="/cart">Carrito</a>
+    <a href="/products/create">Alta de vehículo</a>
+  </nav>
+</header>

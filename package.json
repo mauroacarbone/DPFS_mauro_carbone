@@ -1,0 +1,20 @@
+{
+  "name": "dpfs-mauro-carbone",
+  "version": "1.0.0",
+  "description": "RendiYa — proyecto final Full Stack Digital House",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "node --watch src/app.js"
+  },
+  "keywords": [
+    "rendia",
+    "digital-house"
+  ],
+  "author": "Mauro Carbone",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^6.0.1",
+    "express": "^5.2.1"
+  }
+}

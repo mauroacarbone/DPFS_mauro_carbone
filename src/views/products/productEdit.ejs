@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<%- include('../partials/head') %>
+<body>
+  <%- include('../partials/header') %>
+  <main class="auth admin-form">
+    <h1>Editar vehículo</h1>
+    <p>Corregí datos o actualizá el precio del turno.</p>
+    <form action="/products/<%= product.id %>" method="post">
+      <div class="campo">
+        <label for="name">Nombre del producto</label>
+        <input id="name" name="name" type="text" value="<%= product.name %>" required />
+      </div>
+      <div class="campo">
+        <label for="description">Descripción</label>
+        <textarea id="description" name="description" rows="4" required><%= product.description %></textarea>
+      </div>
+      <div class="campo">
+        <label for="image">Imagen (ruta)</label>
+        <input id="image" name="image" type="text" value="<%= product.image %>" />
+      </div>
+      <div class="campo">
+        <label for="category">Categoría</label>
+        <select id="category" name="category">
+          <option value="Auto" <%= product.category === 'Auto' ? 'selected' : '' %>>Auto</option>
+          <option value="Moto" <%= product.category === 'Moto' ? 'selected' : '' %>>Moto</option>
+        </select>
+      </div>
+      <div class="campo">
+        <label for="zone">Zona</label>
+        <select id="zone" name="zone">
+          <option value="CABA" <%= product.zone === 'CABA' ? 'selected' : '' %>>CABA</option>
+          <option value="GBA" <%= product.zone === 'GBA' ? 'selected' : '' %>>GBA</option>
+        </select>
+      </div>
+      <div class="campo">
+        <label for="transmission">Transmisión</label>
+        <select id="transmission" name="transmission">
+          <option value="Manual" <%= product.transmission === 'Manual' ? 'selected' : '' %>>Manual</option>
+          <option value="Automática" <%= product.transmission === 'Automática' ? 'selected' : '' %>>Automática</option>
+        </select>
+      </div>
+      <div class="campo">
+        <label for="price">Precio</label>
+        <input id="price" name="price" type="number" min="0" value="<%= product.price %>" required />
+      </div>
+      <p><button class="btn btn-rojo" type="submit">Guardar cambios</button></p>
+    </form>
+  </main>
+  <%- include('../partials/footer') %>
+</body>
+</html>

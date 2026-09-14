@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<%- include('../partials/head') %>
+<body>
+  <%- include('../partials/header') %>
+
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">CABA y GBA · Auto o moto</span>
+        <h1>Reservá el vehículo para rendir tu prueba de manejo</h1>
+        <p>Turnos cortos, unidades aptas para el práctico y cerca del centro de emisión.</p>
+        <form class="filtros" action="/products" method="get">
+          <select name="category" aria-label="Tipo de vehículo">
+            <option value="">Todos</option>
+            <option value="Auto">Auto</option>
+            <option value="Moto">Moto</option>
+          </select>
+          <select name="zone" aria-label="Zona">
+            <option value="">CABA y GBA</option>
+            <option value="CABA">CABA</option>
+            <option value="GBA">GBA</option>
+          </select>
+          <input type="date" aria-label="Fecha del examen" />
+          <button class="btn btn-rojo" type="submit">Ver disponibilidad</button>
+        </form>
+      </div>
+      <div class="hero-photo">
+        <img src="/images/hero-auto.jpg" alt="Auto listo para el examen práctico" />
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion" id="oferta">
+    <div class="wrap">
+      <h2>Destacados</h2>
+      <p>Unidades habilitadas para el práctico. El precio es por franja, no por día.</p>
+      <div class="grid-prod">
+        <% destacados.forEach(function (product) { %>
+          <%- include('../partials/productCard', { product }) %>
+        <% }) %>
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion">
+    <div class="wrap">
+      <h2>Categoría CABA</h2>
+      <div class="grid-prod">
+        <% caba.forEach(function (product) { %>
+          <%- include('../partials/productCard', { product }) %>
+        <% }) %>
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion">
+    <div class="wrap">
+      <h2>Categoría GBA</h2>
+      <div class="grid-prod">
+        <% if (gba.length) { %>
+          <% gba.forEach(function (product) { %>
+            <%- include('../partials/productCard', { product }) %>
+          <% }) %>
+        <% } else { %>
+          <p>Por ahora no hay unidades cargadas en GBA.</p>
+        <% } %>
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion" id="como">
+    <div class="wrap">
+      <h2>Cómo funciona</h2>
+      <div class="pasos">
+        <article class="paso"><strong>1. Elegí</strong><p>Auto o moto, CABA o GBA, y la fecha de tu práctico.</p></article>
+        <article class="paso"><strong>2. Reservá</strong><p>Sumá extras (instructor, casco) y pagá la seña desde el carrito.</p></article>
+        <article class="paso"><strong>3. Rindé</strong><p>Retirás la unidad cerca del centro de emisión.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <%- include('../partials/footer') %>
+</body>
+</html>

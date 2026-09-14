@@ -33,3 +33,42 @@ Dinámica de la **estrella de mar**. El objetivo es mejorar la organización per
 ## Conclusión
 
 El Sprint 1 cumplió lo pedido: repositorio, temática, referentes, wireframes y boceto de identidad. Lo que hay que mejorar es la cadencia de commits y el respeto estricto de nombres y carpetas que pide cada iteración. Eso es justamente lo que el Sprint 2 exige (`Views/`, `styles/`, `retro.md` y el tablero).
+
+---
+
+# Retrospectiva — Sprint 2
+
+Estrella de mar, a partir de la maqueta HTML y CSS.
+
+## Comenzar a hacer
+
+- Completar el tablero de GitHub **al inicio** del sprint (issues con estado), no al final.
+- Hacer `git pull` antes de trabajar, sobre todo si el README se edita desde GitHub o desde otra PC.
+- Levantar el sitio en el navegador (escritorio y ancho de celular) antes de dar por cerrada una página.
+
+## Hacer más
+
+- Commits con mensaje claro cuando cierra un entregable (retro, vistas, estilos).
+- Comentarios breves en los HTML que indiquen qué historia cubre cada página.
+- Usar **Create new issue** en el Project, para que las tarjetas queden también en Issues.
+
+## Continuar haciendo
+
+- Respetar los nombres que pide la consigna (`Views/`, `styles/`, `retro.md`).
+- Maquetar primero (enlaces, errores visibles, menú mobile) y dejar la lógica para más adelante.
+- Tomar la identidad ya definida (RendiYa, rojo/amarillo) y no rediseñar en cada sprint.
+
+## Hacer menos
+
+- Dejar el Project vacío hasta el último momento.
+- Mezclar en un solo paso documentación, maqueta y publicación.
+
+## Dejar de hacer
+
+- Editar el README en GitHub y en local **sin** sincronizar después.
+- Tratar el tablero como un adorno: si no tiene tarjetas, no sirve para el corrector.
+
+## Conclusión
+
+El Sprint 2 entregó la maqueta, la retro del Sprint 1, los estilos y el enlace al tablero. El atraso estuvo en organizar el Project y en no traer a tiempo los cambios hechos en GitHub. En el Sprint 3 conviene armar Express + EJS **por etapas** (retro y tablero, motor de plantillas, carpetas, parciales, altas/edición), para no romper la maqueta de un saque.
+

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<%- include('../partials/head') %>
+<body>
+  <%- include('../partials/header') %>
+  <main class="auth admin-form">
+    <h1>Alta de vehículo</h1>
+    <p>Formulario de administrador para incorporar una unidad al catálogo.</p>
+    <form action="/products" method="post">
+      <div class="campo">
+        <label for="name">Nombre del producto</label>
+        <input id="name" name="name" type="text" required />
+      </div>
+      <div class="campo">
+        <label for="description">Descripción</label>
+        <textarea id="description" name="description" rows="4" required></textarea>
+      </div>
+      <div class="campo">
+        <label for="image">Imagen (ruta)</label>
+        <input id="image" name="image" type="text" placeholder="/images/cronos.jpg" />
+      </div>
+      <div class="campo">
+        <label for="category">Categoría</label>
+        <select id="category" name="category">
+          <option value="Auto">Auto</option>
+          <option value="Moto">Moto</option>
+        </select>
+      </div>
+      <div class="campo">
+        <label for="zone">Zona</label>
+        <select id="zone" name="zone">
+          <option value="CABA">CABA</option>
+          <option value="GBA">GBA</option>
+        </select>
+      </div>
+      <div class="campo">
+        <label for="transmission">Transmisión</label>
+        <select id="transmission" name="transmission">
+          <option value="Manual">Manual</option>
+          <option value="Automática">Automática</option>
+        </select>
+      </div>
+      <div class="campo">
+        <label for="price">Precio</label>
+        <input id="price" name="price" type="number" min="0" required />
+      </div>
+      <p><button class="btn btn-rojo" type="submit">Guardar vehículo</button></p>
+    </form>
+  </main>
+  <%- include('../partials/footer') %>
+</body>
+</html>

@@ -123,3 +123,24 @@ https://github.com/users/mauroacarbone/projects/1/views/1
 | Registro | Views/register.html |
 | Login | Views/login.html |
 
+---
+
+## Sprint 3 — Express + EJS
+
+La aplicación dinámica se inicia con:
+
+```
+npm install
+npm start
+```
+
+Abrir http://localhost:3000
+
+| Qué | Dónde |
+|---|---|
+| App | `src/app.js` |
+| Partials | `src/views/partials/` |
+| Productos | `src/views/products/` |
+| Usuarios | `src/views/users/` |
+| CSS e imágenes | `public/` |
+

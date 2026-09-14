@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tablero RendiYa — Sprint 2</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@800&family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --rojo: #e81c3a;
+      --amarillo: #ffe600;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, sans-serif;
+      background: #0079bf;
+      color: #172b4d;
+      min-height: 100vh;
+    }
+    header {
+      background: rgba(0,0,0,.15);
+      color: #fff;
+      padding: 16px 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+    }
+    header h1 {
+      font-family: Nunito, sans-serif;
+      margin: 0;
+      font-size: 22px;
+    }
+    header p { margin: 4px 0 0; font-size: 13px; opacity: .95; }
+    header a { color: var(--amarillo); }
+    .board {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 12px;
+      padding: 16px;
+      align-items: start;
+    }
+    .col {
+      background: #ebecf0;
+      border-radius: 12px;
+      padding: 8px;
+    }
+    .col h2 {
+      font-size: 13px;
+      margin: 6px 8px 10px;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+    .card {
+      background: #fff;
+      border-radius: 8px;
+      padding: 10px 12px;
+      margin-bottom: 8px;
+      box-shadow: 0 1px 0 rgba(9,30,66,.25);
+      font-size: 14px;
+    }
+    .card strong { display: block; margin-bottom: 4px; }
+    .meta { font-size: 12px; color: #5e6c84; margin-top: 6px; }
+    .tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 4px;
+      margin: 0 4px 6px 0;
+    }
+    .t-story { background: #e6fcff; }
+    .t-task { background: #fefae6; }
+    .t-done { background: #e3fcec; }
+    .t-now { background: var(--amarillo); }
+    footer {
+      color: #fff;
+      font-size: 13px;
+      padding: 8px 20px 24px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <h1>RendiYa · Tablero de trabajo</h1>
+      <p>Sprint 2 — Maqueta HTML y CSS. Responsable: Mauro Carbone. Criterio de listo: página en <code>Views/</code>, estilos en <code>styles/</code>, enlaces y vista en celular.</p>
+    </div>
+    <p><a href="Views/index.html">Abrir el sitio</a> · <a href="README.md">README</a> · <a href="retro.md">Retro</a></p>
+  </header>
+
+  <div class="board">
+    <section class="col">
+      <h2>Por hacer</h2>
+      <article class="card">
+        <span class="tag t-task">Sprint 3</span>
+        <strong>Esperar consigna de la siguiente iteración</strong>
+        <p class="meta">No iniciar hasta tener el enunciado.</p>
+      </article>
+      <article class="card">
+        <span class="tag t-task">Opcional</span>
+        <strong>Pasar este tablero a GitHub Projects o Trello</strong>
+        <p class="meta">Si el corrector pide un enlace externo.</p>
+      </article>
+    </section>
+
+    <section class="col">
+      <h2>En curso</h2>
+      <article class="card">
+        <span class="tag t-now">Ahora</span>
+        <strong>Revisión visual escritorio + celular</strong>
+        <p>Probar menú hamburguesa, formularios con errores y recorrido Home → detalle → carrito → login.</p>
+        <p class="meta">DoD: se ve bien en 360px y en 1100px.</p>
+      </article>
+    </section>
+
+    <section class="col">
+      <h2>En revisión</h2>
+      <article class="card">
+        <span class="tag t-story">US</span>
+        <strong>Home: ver la oferta y usar el sitio en el teléfono</strong>
+        <p class="meta">Views/index.html</p>
+      </article>
+      <article class="card">
+        <span class="tag t-story">US</span>
+        <strong>Detalle: información del producto y agregar al carrito</strong>
+        <p class="meta">Views/productDetail.html</p>
+      </article>
+    </section>
+
+    <section class="col">
+      <h2>Listo</h2>
+      <article class="card">
+        <span class="tag t-done">Listo</span>
+        <strong>Retrospectiva Sprint 1 (estrella de mar)</strong>
+        <p class="meta">retro.md</p>
+      </article>
+      <article class="card">
+        <span class="tag t-done">Listo</span>
+        <strong>Carrito: ver detalle, quitar o cambiar cantidad</strong>
+        <p class="meta">Views/productCart.html</p>
+      </article>
+      <article class="card">
+        <span class="tag t-done">Listo</span>
+        <strong>Registro: alta de usuario (vista de errores)</strong>
+        <p class="meta">Views/register.html</p>
+      </article>
+      <article class="card">
+        <span class="tag t-done">Listo</span>
+        <strong>Login: entrar, recordarme y recuperar contraseña</strong>
+        <p class="meta">Views/login.html</p>
+      </article>
+      <article class="card">
+        <span class="tag t-done">Listo</span>
+        <strong>Identidad Sprint 1</strong>
+        <p class="meta">README, wireframes, design</p>
+      </article>
+    </section>
+  </div>
+
+  <footer>
+    Cada tarjeta indica el entregable. Una tarea está lista cuando el HTML, el CSS y los enlaces están en el repositorio.
+  </footer>
+</body>
+</html>

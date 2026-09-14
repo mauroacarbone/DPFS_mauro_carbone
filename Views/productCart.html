@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Carrito — RendiYa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Nunito:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles/main.css" />
+</head>
+<body>
+  <header class="site-header">
+    <input class="nav-toggle" type="checkbox" id="nav-toggle" />
+    <div class="header-inner wrap">
+      <a class="logo-word" href="index.html">Rendi<span>Ya</span></a>
+      <nav class="nav-desk">
+        <a href="index.html">Inicio</a>
+        <a href="index.html#oferta">Vehículos</a>
+      </nav>
+      <div class="header-actions">
+        <a class="btn btn-ghost" href="login.html">Ingresar</a>
+        <a class="cart-link" href="productCart.html" aria-label="Carrito">🛒<span class="cart-badge">1</span></a>
+        <label class="burger" for="nav-toggle" aria-label="Abrir menú"><span></span><span></span><span></span></label>
+      </div>
+    </div>
+    <nav class="nav-mobile wrap">
+      <a href="index.html">Inicio</a>
+      <a href="login.html">Ingresar</a>
+    </nav>
+  </header>
+
+  <main class="wrap" style="padding: 28px 0 56px">
+    <h1>Carrito de reservas</h1>
+    <p>Podés quitar el turno o cambiar la cantidad de extras. El pago se maqueta; no está conectado todavía.</p>
+
+    <article class="item-carrito">
+      <img src="../images/cronos.jpg" alt="Fiat Cronos" />
+      <div>
+        <h2>Fiat Cronos 1.3</h2>
+        <p class="tag">CABA · 12/10/2026 · 08:00 – 11:00</p>
+        <p>Instructor acompañante</p>
+        <div class="qty">
+          <button type="button" aria-label="Restar">−</button>
+          <span>1</span>
+          <button type="button" aria-label="Sumar">+</button>
+          <a href="productDetail.html">Editar</a>
+          <a href="productCart.html">Quitar</a>
+        </div>
+      </div>
+      <p class="precio">$60.000</p>
+    </article>
+
+    <section class="totales">
+      <p><span>Turno del vehículo</span><span>$45.000</span></p>
+      <p><span>Instructor</span><span>$15.000</span></p>
+      <p><span>Seña a abonar ahora</span><span>$20.000</span></p>
+      <p><strong>Total</strong><strong>$60.000</strong></p>
+      <p><a class="btn btn-rojo" href="login.html">Continuar al pago</a>
+         <a class="btn btn-linea" href="index.html">Seguir viendo vehículos</a></p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap"><a href="index.html">RendiYa</a> · Carrito</div>
+  </footer>
+</body>
+</html>

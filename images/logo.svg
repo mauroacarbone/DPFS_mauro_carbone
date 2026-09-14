@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 160" role="img" aria-label="RendiYa">
+  <title>RendiYa</title>
+  <defs>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@800");
+      .word {
+        font-family: Nunito, "Arial Rounded MT Bold", Arial, sans-serif;
+        font-weight: 800;
+        font-size: 92px;
+        letter-spacing: -3px;
+      }
+    </style>
+  </defs>
+  <text class="word" x="24" y="108">
+    <tspan fill="#121212">Rendi</tspan><tspan fill="#E81C3A">Ya</tspan>
+  </text>
+</svg>

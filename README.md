@@ -1,103 +1,101 @@
 # RendiYa
 
-Proyecto final Full Stack — Digital House (DPFS), desarrollado en **7 sprints**.
+Proyecto final Full Stack de Digital House (DPFS). Son **7 sprints**.
 
-E-commerce para el **alquiler de autos y motos** destinados a rendir la **prueba de manejo** del carnet en **CABA y GBA**.
+La idea es un e-commerce para **alquilar autos y motos** el día que tenés que rendir la **prueba de manejo** en **CABA o GBA**.
 
-El proyecto surge de un contexto cercano: mi primo tiene una **autoescuela**. Desde ese lugar se observa con claridad la falta de un servicio específico. Quien está por rendir el **examen práctico** en CABA o GBA, con frecuencia, **no dispone de automóvil ni de moto**, no puede utilizar el vehículo de un familiar, o prefiere no presentarse con uno que no conoce. Las empresas de alquiler tradicionales no resuelven esa necesidad: trabajan con plazos largos, no con un turno breve, y no están pensadas para acercarse al centro de emisión. **RendiYa** nace para cubrir exactamente ese servicio.
+Arranqué con esto porque mi primo tiene una autoescuela. Ahí se ve todo el tiempo el mismo problema: hay gente que está lista para el práctico y **no tiene auto ni moto**. A veces el familiar no presta el vehiculo, o no quieren rendir con uno que no conocen. Un rent-a-car común no sirve para eso: te alquilan por días, no por el rato del examen, y no está pensado para ir hasta el centro de emisión. **RendiYa** es para cubrir esa falta.
 
 ---
 
 ## Temática del sitio
 
-**RendiYa** no es un rent-a-car genérico. Es un sitio de **reserva de vehículo y turno** para el trámite del registro de conducir.
+No queremos armar “otro Hertz”. El sitio vende **un turno con un vehículo** para el trámite del carnet.
 
 ### Qué ofrecemos
 
-- Alquiler de **autos** y **motos** aptos para rendir en centros de CABA y GBA.
-- Turnos por franja horaria (práctica previa y/o día de examen).
-- Packs: solo vehículo, o vehículo con instructor.
-- Extras: casco, documentación a bordo y acercamiento al centro de emisión.
+- Autos y motos que sirvan para rendir en CABA y GBA.
+- Horarios cortos: una práctica antes, o directo el día del examen.
+- Podés llevar solo el vehículo o sumar un instructor.
+- Cosas extras, tipo casco, o que te dejen cerca del lugar donde rendís.
 
-Cada producto del e-commerce es un **vehículo con su modalidad**. Por ejemplo: Fiat Cronos para examen de auto en CABA, o Honda Wave para examen de moto. El carrito conforma la reserva: fecha, sede y extras.
+En el e-commerce cada producto es un auto o una moto con su modalidad. Por ejemplo: un Fiat Cronos para examen en CABA, o una Honda Wave para moto. El carrito es la reserva: fecha, zona y extras.
 
-### Público objetivo
+### A quién le apuntamos
 
-- Personas que **están por rendir** (teórico aprobado o fecha de práctico próxima) y no tienen auto o moto propios, o no desean usar el de un familiar.
-- Alumnos de escuelas de manejo que necesitan un vehículo **similar** al que utilizaron durante las clases.
-- Residentes de CABA y GBA (en una primera etapa, CABA y Zona Norte; luego, el resto del conurbano).
+- Gente que ya está por rendir (teórico hecho o fecha de práctico cerca) y no tiene vehículo propio.
+- Alumnos de autoescuela que quieren algo parecido a lo que vinieron manejando.
+- Por ahora, CABA y GBA. Si anda, se puede ir sumando zona.
 
-### Cómo ajustamos la oferta a ese público
+### Cómo se lo armamos a esa gente
 
-- Lenguaje claro, sin jerga de agencia: “reservá el auto para tu prueba”.
-- Filtros por **tipo de licencia** (auto / moto), **zona** (CABA o GBA) y **fecha**.
-- Precio por turno, sin condiciones poco transparentes.
-- Recorrido breve: en pocos pasos se elige el vehículo, la sede y el horario.
+Van a entrar apurados, no a mirar un catálogo de lujo. Entonces:
+
+- Hablar claro: “reservá el auto para tu prueba”, sin vueltas raras.
+- Filtrar por auto o moto, CABA o GBA, y la fecha.
+- El precio es por turno, no por kilómetro ni con letra chica.
+- En pocos clics: vehículo, horario y listo.
 
 ---
 
 ## Sobre mí
 
-Soy **Mauro Carbone** y estoy finalizando el curso de Full Stack en Digital House. Este proyecto me sirve para aplicar Node.js y React, pero también surge de algo que veo de verdad: en la autoescuela de mi primo falta un servicio simple para quien está a punto de rendir y no tiene con qué presentarse, así como para quienes se presentan al examen sin un vehículo pertinente.
+Soy Mauro Carbone, estoy finalizando el curso de Full Stack en Digital House. Este proyecto me sirve para aplicar Node y React, pero también sale de algo que veo de verdad: en la autoescuela de mi primo falta un servicio simple para el que está a punto de rendir y no tiene con qué presentarse, asi como tambien a aquellos que se prensentan a rendir sin un vehiculo pertinente. 
 
 ---
 
-## Referentes del mercado
+## Referentes
 
-Revisé sitios de los que tomo ideas de catálogo, reserva, estética y público. La mayoría corresponden a **alquiler de autos**; los últimos dos, al trámite del carnet y a un referente local de movilidad.
+Me fijé sobre todo en alquiler de autos, porque el flujo (elegir, ver ficha, reservar) es el que más se parece. Después sumé dos sitios más del mundo del carnet.
 
 1. **[Localiza Argentina](https://www.localiza.com/argentina/es-ar)**  
-   Catálogo por categoría, fechas de retiro y ficha del vehículo. Sirve de guía para armar nuestros productos (auto o moto + turno).
+   La uso mucho de guía para el catálogo: categorías, fechas y ficha del auto. Ahí se entiende cómo mostrar cada “producto” nuestro.
 
 2. **[Hertz Argentina](https://www.hertz.com.ar)**  
-   Recorrido clásico de alquiler (sucursal, fechas, extras). Inspiración para el carrito: instructor o casco como adicionales, no como páginas separadas.
+   El paso a paso clásico (lugar, fechas, extras). De acá saco la idea de meter el instructor o el casco como extra en el carrito, no como páginas aparte.
 
 3. **[Sixt](https://www.sixt.com.ar)**  
-   Estética más actual y filtros claros. Referente de interfaz para que RendiYa no se perciba desactualizado.
+   Se ve más actual, con filtros fáciles. No quiero que RendiYa parezca un sitio viejo.
 
 4. **[Turo](https://turo.com)**  
-   Cada unidad tiene ficha completa, fotos y calendario. De ahí tomo el detalle de producto (características y precio por período).
+   Cada auto tiene su ficha con fotos, datos y calendario. Eso me sirve para el detalle de producto.
 
 5. **[Rentalcars](https://www.rentalcars.com)**  
-   Buscar, comparar y reservar en pocos pasos. Es el tipo de experiencia que necesita alguien con fecha de examen próxima.
+   Buscás, comparás y reservás rápido. Justo lo que hace falta cuando ya tenés fecha de examen.
 
-6. **[Argentina.gob.ar — Licencia Nacional de Conducir](https://www.argentina.gob.ar/seguridadvial/licencianacionalconducir)**  
-   El trámite real del carnet. Orienta el **público objetivo** (quién rinde, qué documentación, CABA/GBA) y el lenguaje de búsqueda habitual.
+6. **[Argentina.gob.ar — Licencia de conducir](https://www.argentina.gob.ar/seguridadvial/licencianacionalconducir)**  
+   Es el trámite de verdad. Me ayuda a no inventar el público: quién rinde, qué pide CABA/GBA, cómo habla la gente cuando googilea esto.
 
 7. **[Automóvil Club Argentino (ACA)](https://www.aca.org.ar)**  
-   Referente local de movilidad y formación vial. Útil para el tono de confianza que debe transmitir el sitio.
+   Referente de acá, más institucional. Lo miré por el tono de confianza, que en un tema de carnet viene bien.
 
 ---
 
 ## Wireframes
 
-Carpeta [`wireframes/`](wireframes/). Representan la estructura general del sitio (escritorio y celular), no el diseño final. Las **imágenes** son el entregable que solicita la consigna:
+Están en [`wireframes/`](wireframes/). Son el dibujo de la estructura (escritorio y celular, cajas simples), no el diseño final.
 
-| Sección | Imagen | Versión navegable |
-|---|---|---|
-| Home | [wireframe-home.png](wireframes/wireframe-home.png) | [home.html](wireframes/home.html) |
-| Detalle de producto | [wireframe-detalle.png](wireframes/wireframe-detalle.png) | [detalle-producto.html](wireframes/detalle-producto.html) |
-| Carrito | [wireframe-carrito.png](wireframes/wireframe-carrito.png) | [carrito.html](wireframes/carrito.html) |
-| Registro | [wireframe-registro.png](wireframes/wireframe-registro.png) | [registro.html](wireframes/registro.html) |
-| Login | [wireframe-login.png](wireframes/wireframe-login.png) | [login.html](wireframes/login.html) |
+Las fotos que pide la consigna:
 
-Índice: [wireframes/index.html](wireframes/index.html).
+- Home → [wireframe-home.png](wireframes/wireframe-home.png) · [home.html](wireframes/home.html)
+- Detalle de producto → [wireframe-detalle.png](wireframes/wireframe-detalle.png) · [detalle-producto.html](wireframes/detalle-producto.html)
+- Carrito → [wireframe-carrito.png](wireframes/wireframe-carrito.png) · [carrito.html](wireframes/carrito.html)
+- Registro → [wireframe-registro.png](wireframes/wireframe-registro.png) · [registro.html](wireframes/registro.html)
+- Login → [wireframe-login.png](wireframes/wireframe-login.png) · [login.html](wireframes/login.html)
+
+También hay un índice: [wireframes/index.html](wireframes/index.html).
 
 ---
 
 ## Design (opcional)
 
-Carpeta [`design/`](design/). La identidad toma como referencia a **PedidosYa** (rojo, el “Ya”, ícono tipo aplicación) y a **Mercado Libre** (amarillo y un tono cercano).
+Carpeta [`design/`](design/). El look lo armé pensando en PedidosYa (el rojo, el “Ya”, el ícono tipo app) y en Mercado Libre (el amarillo, que se sienta cercano).
 
-Tablero completo: [design/index.html](design/index.html).
+Para verlo todo junto: [design/index.html](design/index.html).
 
-| Elemento | Archivo |
-|---|---|
-| Logo | [logo.svg](design/logo.svg) |
-| Logo sobre rojo | [logo-rojo.svg](design/logo-rojo.svg) |
-| Isotipo rojo | [isotipo.svg](design/isotipo.svg) |
-| Isotipo amarillo | [isotipo-amarillo.svg](design/isotipo-amarillo.svg) |
-| Imagen del logo | [logo-rendiya.png](design/logo-rendiya.png) |
+- Logo: [logo.svg](design/logo.svg) · versión sobre rojo: [logo-rojo.svg](design/logo-rojo.svg)
+- Ícono: [isotipo.svg](design/isotipo.svg) · [isotipo-amarillo.svg](design/isotipo-amarillo.svg)
+- Imagen: [logo-rendiya.png](design/logo-rendiya.png)
 
-- **Colores:** rojo `#E81C3A` · amarillo `#FFE600` · azul `#3483FA` · negro `#121212`
-- **Tipografías:** Nunito ExtraBold (logo y títulos) · Inter (textos)
+Colores: rojo `#E81C3A`, amarillo `#FFE600`, azul `#3483FA`, negro `#121212`.  
+Fuentes: Nunito para el logo y los títulos, Inter para el resto de los textos.

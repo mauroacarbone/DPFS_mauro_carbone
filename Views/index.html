@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>RendiYa — Autos y motos para tu prueba de manejo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Nunito:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles/main.css" />
+</head>
+<body>
+  <header class="site-header">
+    <input class="nav-toggle" type="checkbox" id="nav-toggle" />
+    <div class="header-inner wrap">
+      <a class="logo-word" href="index.html">Rendi<span>Ya</span></a>
+      <nav class="nav-desk">
+        <a href="index.html">Inicio</a>
+        <a href="#oferta">Vehículos</a>
+        <a href="#como">Cómo funciona</a>
+      </nav>
+      <div class="header-actions">
+        <a class="btn btn-ghost" href="login.html">Ingresar</a>
+        <a class="btn btn-linea" href="register.html">Crear cuenta</a>
+        <a class="cart-link" href="productCart.html" aria-label="Carrito">🛒<span class="cart-badge">1</span></a>
+        <label class="burger" for="nav-toggle" aria-label="Abrir menú"><span></span><span></span><span></span></label>
+      </div>
+    </div>
+    <nav class="nav-mobile wrap">
+      <a href="index.html">Inicio</a>
+      <a href="#oferta">Vehículos</a>
+      <a href="#como">Cómo funciona</a>
+      <a href="login.html">Ingresar</a>
+      <a href="register.html">Crear cuenta</a>
+      <a href="productCart.html">Carrito</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">CABA y GBA · Auto o moto</span>
+        <h1>Reservá el vehículo para rendir tu prueba de manejo</h1>
+        <p>Turnos cortos, unidades aptas para el práctico y cerca del centro de emisión. No es un alquiler de una semana: es el auto o la moto para el día del examen.</p>
+        <form class="filtros" action="productDetail.html">
+          <select aria-label="Tipo de vehículo">
+            <option>Auto</option>
+            <option>Moto</option>
+          </select>
+          <select aria-label="Zona">
+            <option>CABA</option>
+            <option>GBA</option>
+          </select>
+          <input type="date" aria-label="Fecha del examen" />
+          <a class="btn btn-rojo" href="productDetail.html">Ver disponibilidad</a>
+        </form>
+      </div>
+      <div class="hero-photo">
+        <img src="../images/hero-auto.jpg" alt="Auto listo para el examen práctico" />
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion" id="oferta">
+    <div class="wrap">
+      <h2>Oferta de vehículos</h2>
+      <p>Elegí la unidad, la zona y el turno. El precio es por franja, no por día.</p>
+      <div class="grid-prod">
+        <article class="card">
+          <img src="../images/cronos.jpg" alt="Fiat Cronos" />
+          <div class="card-body">
+            <span class="tag">Auto · CABA · Clase B</span>
+            <h3>Fiat Cronos 1.3</h3>
+            <p class="precio">$45.000 / turno</p>
+            <a class="btn btn-rojo" href="productDetail.html">Ver detalle</a>
+          </div>
+        </article>
+        <article class="card">
+          <img src="../images/yaris.jpg" alt="Toyota Yaris" />
+          <div class="card-body">
+            <span class="tag">Auto · GBA · Clase B</span>
+            <h3>Toyota Yaris</h3>
+            <p class="precio">$48.000 / turno</p>
+            <a class="btn btn-rojo" href="productDetail.html">Ver detalle</a>
+          </div>
+        </article>
+        <article class="card">
+          <img src="../images/wave.jpg" alt="Honda Wave" />
+          <div class="card-body">
+            <span class="tag">Moto · CABA · Clase A</span>
+            <h3>Honda Wave</h3>
+            <p class="precio">$28.000 / turno</p>
+            <a class="btn btn-rojo" href="productDetail.html">Ver detalle</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion" id="como">
+    <div class="wrap">
+      <h2>Cómo funciona</h2>
+      <div class="pasos">
+        <article class="paso"><strong>1. Elegí</strong><p>Auto o moto, CABA o GBA, y la fecha de tu práctico.</p></article>
+        <article class="paso"><strong>2. Reservá</strong><p>Sumá extras (instructor, casco) y pagá la seña desde el carrito.</p></article>
+        <article class="paso"><strong>3. Rindé</strong><p>Retirás la unidad cerca del centro de emisión y te presentás tranquilo.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div>
+        <p class="logo-word" style="color:#fff">Rendi<span>Ya</span></p>
+        <p>Alquiler de autos y motos para el examen práctico en CABA y GBA.</p>
+      </div>
+      <div>
+        <p><a href="index.html">Inicio</a></p>
+        <p><a href="register.html">Registro</a></p>
+        <p><a href="login.html">Ingresar</a></p>
+      </div>
+      <div>
+        <p>Sprint 2 · Maqueta HTML y CSS</p>
+        <p>Digital House · DPFS</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

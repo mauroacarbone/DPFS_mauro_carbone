@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ingresar — RendiYa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Nunito:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles/main.css" />
+</head>
+<body>
+  <header class="site-header">
+    <input class="nav-toggle" type="checkbox" id="nav-toggle" />
+    <div class="header-inner wrap">
+      <a class="logo-word" href="index.html">Rendi<span>Ya</span></a>
+      <div class="header-actions">
+        <a class="btn btn-linea" href="register.html">Crear cuenta</a>
+        <label class="burger" for="nav-toggle" aria-label="Abrir menú"><span></span><span></span><span></span></label>
+      </div>
+    </div>
+    <nav class="nav-mobile wrap">
+      <a href="index.html">Inicio</a>
+      <a href="register.html">Registro</a>
+    </nav>
+  </header>
+
+  <main class="auth">
+    <h1>Ingresar</h1>
+    <p>Entrá para ver tu historial de reservas y continuar el pago de la seña.</p>
+
+    <div class="banner-error" role="alert">
+      Email o contraseña incorrectos. (Vista de error; el login todavía no está conectado.)
+    </div>
+
+    <form action="#" method="get">
+      <div class="campo error">
+        <label for="email">Email</label>
+        <input id="email" type="email" value="mauro@mail.com" aria-invalid="true" />
+        <p class="msg-error">No encontramos una cuenta con este email.</p>
+      </div>
+      <div class="campo">
+        <label for="pass">Contraseña</label>
+        <input id="pass" type="password" />
+      </div>
+      <label class="check">
+        <input type="checkbox" checked />
+        Recordarme en este dispositivo
+      </label>
+      <p><button class="btn btn-rojo" type="button">Ingresar</button></p>
+    </form>
+
+    <section class="recuperar" id="recuperar">
+      <h2>¿Olvidaste tu contraseña?</h2>
+      <p>Ingresá el email y te enviamos un enlace para recuperarla. En este sprint solo se muestra cómo se ve el paso.</p>
+      <div class="campo">
+        <label for="recupera">Email de la cuenta</label>
+        <input id="recupera" type="email" placeholder="tu@correo.com" />
+      </div>
+      <button class="btn btn-amarillo" type="button">Enviar enlace de recuperación</button>
+    </section>
+
+    <p>¿No tenés cuenta? <a href="register.html">Registrate</a></p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap"><a href="index.html">Volver al inicio</a></div>
+  </footer>
+</body>
+</html>

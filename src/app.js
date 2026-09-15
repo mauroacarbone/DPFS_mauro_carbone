@@ -17,6 +17,7 @@ const cors = require('./middlewares/cors');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+app.set('trust proxy', 1);
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
@@ -25,7 +26,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride('_method'));
 app.use(cookieParser());
 app.use(session({
-  secret: 'rendiya-secret',
+  secret: process.env.SESSION_SECRET || 'rendiya-secret',
   resave: false,
   saveUninitialized: false
 }));
@@ -66,8 +67,8 @@ app.use((req, res) => {
 db.sequelize.sync()
   .then(() => seedIfEmpty())
   .then(() => {
-    app.listen(PORT, () => {
-      console.log(`RendiYa en http://localhost:${PORT}`);
+    app.listen(PORT, '0.0.0.0', () => {
+      console.log(`RendiYa en el puerto ${PORT}`);
     });
   })
   .catch((error) => {

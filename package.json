@@ -8,6 +8,9 @@
     "dev": "node --watch src/app.js",
     "central": "npm --prefix dashboard run build"
   },
+  "engines": {
+    "node": ">=20"
+  },
   "keywords": [
     "rendia",
     "digital-house"

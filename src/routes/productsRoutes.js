@@ -26,6 +26,7 @@ router.get('/', productsController.list);
 router.get('/create', authMiddleware, productsController.create);
 router.post('/', authMiddleware, upload.single('imageFile'), validations.product, productsController.store);
 router.get('/cart', productsController.cart);
+router.get('/checkout', productsController.checkout);
 router.get('/detail/:id', (req, res) => res.redirect('/products/' + req.params.id));
 router.get('/edit/:id', (req, res) => res.redirect('/products/' + req.params.id + '/edit'));
 router.get('/:id/edit', authMiddleware, productsController.edit);

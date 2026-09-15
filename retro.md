@@ -204,3 +204,36 @@ Estrella de mar, a partir de las validaciones de formularios.
 
 El Sprint 7 cierra el circuito de datos: si el formulario miente, el back-end no deja pasar el registro ni el alta de un vehículo.
 
+---
+
+# Retrospectiva — Sprint 8
+
+Estrella de mar, a partir de las APIs y el dashboard.
+
+## Comenzar a hacer
+
+- Diseñar primero el JSON (count, detail, relaciones) y recién después el fetch en React.
+- Separar el dashboard en un front propio (`dashboard/`) para no mezclar EJS con componentes.
+
+## Hacer más
+
+- Paginar de entrada (10 ítems, `next` / `previous`) aunque el catálogo todavía sea chico.
+- Reutilizar un helper de URLs absolutas para imagen y `detail`.
+
+## Continuar haciendo
+
+- Actualizar el tablero al inicio del sprint.
+- Dejar afuera del JSON lo sensible: password y categoría de usuario.
+
+## Hacer menos
+
+- Inventar un endpoint de “stats” si la consigna ya pide count y countByCategory en el listado.
+
+## Dejar de hacer
+
+- Meter React adentro de Express “porque es el mismo proyecto”: el dashboard consume la API, no las vistas.
+
+## Conclusión
+
+El Sprint 8 cierra RendiYa: el sitio sigue en EJS y el tablero de métricas lee la misma base por `/api/users` y `/api/products`.
+

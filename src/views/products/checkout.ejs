@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<%- include('../partials/head') %>
+<body>
+  <%- include('../partials/header') %>
+  <main class="wrap checkout-page">
+    <p class="warn-banner" role="note">Entorno de Prueba: No ingrese datos reales de tarjetas de crédito o débito.</p>
+    <section class="auth pay-box">
+      <h1>Simular pago</h1>
+      <p>Completá datos ficticios. No se debita ninguna tarjeta real y el carrito queda en 0.</p>
+      <form id="form-checkout" class="pay-form" novalidate>
+        <div class="campo">
+          <label for="holderName">Titular</label>
+          <input id="holderName" name="holderName" value="Mauro Carbone" required autocomplete="off" />
+        </div>
+        <div class="campo">
+          <label for="cardNumber">Tarjeta</label>
+          <input id="cardNumber" name="cardNumber" inputmode="numeric" placeholder="**** **** ****" minlength="13" maxlength="19" required autocomplete="off" />
+        </div>
+        <div class="campo">
+          <label for="cvv">CVV</label>
+          <input id="cvv" name="cvv" inputmode="numeric" placeholder="CVV" minlength="3" maxlength="4" required autocomplete="off" />
+        </div>
+        <p class="warn">* Entorno de prueba - No ingresar datos reales</p>
+        <button class="btn btn-rojo" type="submit">Enviar</button>
+      </form>
+    </section>
+  </main>
+  <%- include('../partials/footer') %>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="/js/checkout.js"></script>
+</body>
+</html>

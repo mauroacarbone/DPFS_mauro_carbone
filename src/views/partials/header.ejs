@@ -11,6 +11,8 @@
       <a href="/products?category=Auto">Autos</a>
       <a href="/products?category=Moto">Motos</a>
       <a href="/products">Catálogo</a>
+      <a href="/products/checkout">Simular pago</a>
+      <a href="/central">Central</a>
     </nav>
     <div class="header-actions">
       <% if (user) { %>
@@ -20,7 +22,7 @@
         <a class="btn btn-ghost" href="/users/login">Ingresar</a>
         <a class="btn btn-linea" href="/users/register">Registro</a>
       <% } %>
-      <a class="cart-link" href="/products/cart" aria-label="Carrito">🛒<span class="cart-badge">1</span></a>
+      <a class="cart-link" href="/products/cart" aria-label="Carrito">🛒<span class="cart-badge">0</span></a>
       <label class="burger" for="nav-toggle" aria-label="Abrir menú"><span></span><span></span><span></span></label>
     </div>
   </div>
@@ -29,6 +31,8 @@
     <a href="/products?category=Auto">Autos</a>
     <a href="/products?category=Moto">Motos</a>
     <a href="/products">Catálogo</a>
+    <a href="/products/checkout">Simular pago</a>
+    <a href="/central">Central</a>
     <% if (user) { %>
       <a href="/users/profile">Mi perfil</a>
       <a href="/users/logout">Salir</a>

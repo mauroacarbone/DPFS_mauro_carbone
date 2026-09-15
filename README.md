@@ -1,6 +1,6 @@
 # RendiYa
 
-Proyecto final Full Stack de Digital House (DPFS). Son **7 sprints**.
+Proyecto final Full Stack de Digital House (DPFS). Son **8 sprints**.
 
 RendiYa es una plataforma e-commerce orientada al alquiler temporal de autos y motos exclusivamente para el día del examen práctico de conducir en CABA y Gran Buenos Aires (GBA).
 
@@ -223,4 +223,42 @@ Back-end con **express-validator** en las rutas que reciben formularios. Front-e
 Registro: nombre y apellido (mín. 2), email único y válido, contraseña de 8 caracteres, imagen JPG/JPEG/PNG/GIF si se sube.
 
 Productos: nombre (mín. 5), descripción (mín. 20), imagen con esas extensiones si se sube, y que categoría/marca/color/zona existan en la base.
+
+---
+
+## Sprint 8 — APIs y dashboard
+
+El sitio expone JSON para que el dashboard de React lea métricas sin tocar las vistas EJS.
+
+| Endpoint | Qué devuelve |
+|---|---|
+| `GET /api/users` | `count`, `users` (`id`, `name`, `email`, `detail`) y paginado (`next` / `previous`, 10 por página) |
+| `GET /api/users/:id` | Campos del usuario, URL de imagen. Sin `password` ni categoría |
+| `GET /api/products` | `count`, `countByCategory`, `products` (`id`, `name`, `description`, `categories`, `detail`) y paginado |
+| `GET /api/products/:id` | Campos del producto, arrays de relaciones (`categories`, `colors`, `brands`, `zones`) y URL de imagen |
+
+Controladores en `src/controllers/api/`. CORS en `src/middlewares/cors.js`.
+
+La **Central RendiYa** (React) se ve en el mismo puerto del sitio:
+
+- http://localhost:3000/central
+- Pago de prueba (Central): http://localhost:3000/central/pago
+
+Desde el **sitio** (home, menú, carrito y detalle) el cliente simula el pago en:
+
+- http://localhost:3000/products/checkout
+
+En desarrollo, `cd dashboard && npm run dev` sigue en el 5173 (base `/central/`).
+
+Dashboard en [`dashboard/`](dashboard/) (Vite + React). Copiá `dashboard/.env.example` a `dashboard/.env` si hace falta (`VITE_SITE_URL`, `VITE_API_BASE`, `API_PROXY_TARGET`).
+
+```
+cd dashboard
+npm install
+npm run build
+```
+
+Queda compilada en `dashboard/dist` y Express la sirve en `/central`. También: `npm run central` desde la raíz.
+
+Paneles: total de productos, usuarios y categorías; último vehículo creado; productos por categoría; listado de productos.
 

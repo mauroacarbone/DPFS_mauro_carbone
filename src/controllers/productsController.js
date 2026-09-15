@@ -97,6 +97,12 @@ const productsController = {
     });
   },
 
+  checkout: (req, res) => {
+    res.render('products/checkout', {
+      title: 'Pago de prueba — RendiYa'
+    });
+  },
+
   create: async (req, res) => {
     const options = await catalogs();
     res.render('products/productCreate', {

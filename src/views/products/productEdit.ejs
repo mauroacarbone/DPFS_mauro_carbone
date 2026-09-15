@@ -5,66 +5,76 @@
   <%- include('../partials/header') %>
   <main class="auth admin-form">
     <h1>Editar vehículo</h1>
-    <form action="/products/<%= product.id %>?_method=PUT" method="post" enctype="multipart/form-data">
+    <% if (Object.keys(errors).length) { %>
+      <div class="banner-error" role="alert">Revisá los datos marcados.</div>
+    <% } %>
+    <form id="form-product" action="/products/<%= product.id %>?_method=PUT" method="post" enctype="multipart/form-data" novalidate>
       <input type="hidden" name="_method" value="PUT" />
-      <div class="campo">
+      <div class="campo <%= errors.name ? 'error' : '' %>">
         <label for="name">Nombre del producto</label>
-        <input id="name" name="name" type="text" value="<%= product.name %>" required />
+        <input id="name" name="name" type="text" value="<%= old.name || product.name %>" />
+        <% if (errors.name) { %><p class="msg-error"><%= errors.name %></p><% } %>
       </div>
-      <div class="campo">
+      <div class="campo <%= errors.description ? 'error' : '' %>">
         <label for="description">Descripción</label>
-        <textarea id="description" name="description" rows="4" required><%= product.description %></textarea>
+        <textarea id="description" name="description" rows="4"><%= old.description || product.description %></textarea>
+        <% if (errors.description) { %><p class="msg-error"><%= errors.description %></p><% } %>
       </div>
-      <div class="campo">
+      <div class="campo <%= errors.imageFile ? 'error' : '' %>">
         <label for="imageFile">Nueva imagen</label>
-        <input id="imageFile" name="imageFile" type="file" accept="image/*" />
+        <input id="imageFile" name="imageFile" type="file" accept=".jpg,.jpeg,.png,.gif,image/jpeg,image/png,image/gif" />
+        <% if (errors.imageFile) { %><p class="msg-error"><%= errors.imageFile %></p><% } %>
       </div>
       <div class="campo">
         <label for="image">Ruta de imagen</label>
-        <input id="image" name="image" type="text" value="<%= product.image %>" />
+        <input id="image" name="image" type="text" value="<%= old.image || product.image %>" />
       </div>
-      <div class="campo">
+      <div class="campo <%= errors.productCategoryId ? 'error' : '' %>">
         <label for="productCategoryId">Categoría</label>
         <select id="productCategoryId" name="productCategoryId">
           <% productCategories.forEach(function (item) { %>
-            <option value="<%= item.id %>" <%= Number(product.productCategoryId) === Number(item.id) ? 'selected' : '' %>><%= item.name %></option>
+            <option value="<%= item.id %>" <%= Number(old.productCategoryId || product.productCategoryId) === Number(item.id) ? 'selected' : '' %>><%= item.name %></option>
           <% }) %>
         </select>
+        <% if (errors.productCategoryId) { %><p class="msg-error"><%= errors.productCategoryId %></p><% } %>
       </div>
-      <div class="campo">
+      <div class="campo <%= errors.brandId ? 'error' : '' %>">
         <label for="brandId">Marca</label>
         <select id="brandId" name="brandId">
           <% brands.forEach(function (item) { %>
-            <option value="<%= item.id %>" <%= Number(product.brandId) === Number(item.id) ? 'selected' : '' %>><%= item.name %></option>
+            <option value="<%= item.id %>" <%= Number(old.brandId || product.brandId) === Number(item.id) ? 'selected' : '' %>><%= item.name %></option>
           <% }) %>
         </select>
+        <% if (errors.brandId) { %><p class="msg-error"><%= errors.brandId %></p><% } %>
       </div>
-      <div class="campo">
+      <div class="campo <%= errors.colorId ? 'error' : '' %>">
         <label for="colorId">Color</label>
         <select id="colorId" name="colorId">
           <% colors.forEach(function (item) { %>
-            <option value="<%= item.id %>" <%= Number(product.colorId) === Number(item.id) ? 'selected' : '' %>><%= item.name %></option>
+            <option value="<%= item.id %>" <%= Number(old.colorId || product.colorId) === Number(item.id) ? 'selected' : '' %>><%= item.name %></option>
           <% }) %>
         </select>
+        <% if (errors.colorId) { %><p class="msg-error"><%= errors.colorId %></p><% } %>
       </div>
-      <div class="campo">
+      <div class="campo <%= errors.zoneId ? 'error' : '' %>">
         <label for="zoneId">Zona</label>
         <select id="zoneId" name="zoneId">
           <% zones.forEach(function (item) { %>
-            <option value="<%= item.id %>" <%= Number(product.zoneId) === Number(item.id) ? 'selected' : '' %>><%= item.name %></option>
+            <option value="<%= item.id %>" <%= Number(old.zoneId || product.zoneId) === Number(item.id) ? 'selected' : '' %>><%= item.name %></option>
           <% }) %>
         </select>
+        <% if (errors.zoneId) { %><p class="msg-error"><%= errors.zoneId %></p><% } %>
       </div>
       <div class="campo">
         <label for="transmission">Transmisión</label>
         <select id="transmission" name="transmission">
-          <option value="Manual" <%= product.transmission === 'Manual' ? 'selected' : '' %>>Manual</option>
-          <option value="Automática" <%= product.transmission === 'Automática' ? 'selected' : '' %>>Automática</option>
+          <option value="Manual" <%= (old.transmission || product.transmission) === 'Manual' ? 'selected' : '' %>>Manual</option>
+          <option value="Automática" <%= (old.transmission || product.transmission) === 'Automática' ? 'selected' : '' %>>Automática</option>
         </select>
       </div>
       <div class="campo">
         <label for="price">Precio</label>
-        <input id="price" name="price" type="number" min="0" value="<%= product.price %>" required />
+        <input id="price" name="price" type="number" min="0" value="<%= old.price || product.price %>" />
       </div>
       <p><button class="btn btn-rojo" type="submit">Guardar cambios</button></p>
     </form>
@@ -74,5 +84,7 @@
     </form>
   </main>
   <%- include('../partials/footer') %>
+  <script src="/js/form-validation.js"></script>
+  <script src="/js/product-form.js"></script>
 </body>
 </html>

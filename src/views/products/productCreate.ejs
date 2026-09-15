@@ -5,69 +5,81 @@
   <%- include('../partials/header') %>
   <main class="auth admin-form">
     <h1>Alta de vehículo</h1>
-    <form action="/products" method="post" enctype="multipart/form-data">
-      <div class="campo">
+    <% if (Object.keys(errors).length) { %>
+      <div class="banner-error" role="alert">Revisá los datos marcados.</div>
+    <% } %>
+    <form id="form-product" action="/products" method="post" enctype="multipart/form-data" novalidate>
+      <div class="campo <%= errors.name ? 'error' : '' %>">
         <label for="name">Nombre del producto</label>
-        <input id="name" name="name" type="text" required />
+        <input id="name" name="name" type="text" value="<%= old.name || '' %>" />
+        <% if (errors.name) { %><p class="msg-error"><%= errors.name %></p><% } %>
       </div>
-      <div class="campo">
+      <div class="campo <%= errors.description ? 'error' : '' %>">
         <label for="description">Descripción</label>
-        <textarea id="description" name="description" rows="4" required></textarea>
+        <textarea id="description" name="description" rows="4"><%= old.description || '' %></textarea>
+        <% if (errors.description) { %><p class="msg-error"><%= errors.description %></p><% } %>
       </div>
-      <div class="campo">
+      <div class="campo <%= errors.imageFile ? 'error' : '' %>">
         <label for="imageFile">Imagen</label>
-        <input id="imageFile" name="imageFile" type="file" accept="image/*" />
+        <input id="imageFile" name="imageFile" type="file" accept=".jpg,.jpeg,.png,.gif,image/jpeg,image/png,image/gif" />
+        <% if (errors.imageFile) { %><p class="msg-error"><%= errors.imageFile %></p><% } %>
       </div>
       <div class="campo">
         <label for="image">O ruta de imagen</label>
-        <input id="image" name="image" type="text" placeholder="/images/etios.jpg" />
+        <input id="image" name="image" type="text" placeholder="/images/etios.jpg" value="<%= old.image || '' %>" />
       </div>
-      <div class="campo">
+      <div class="campo <%= errors.productCategoryId ? 'error' : '' %>">
         <label for="productCategoryId">Categoría</label>
         <select id="productCategoryId" name="productCategoryId">
           <% productCategories.forEach(function (item) { %>
-            <option value="<%= item.id %>"><%= item.name %></option>
+            <option value="<%= item.id %>" <%= String(old.productCategoryId) === String(item.id) ? 'selected' : '' %>><%= item.name %></option>
           <% }) %>
         </select>
+        <% if (errors.productCategoryId) { %><p class="msg-error"><%= errors.productCategoryId %></p><% } %>
       </div>
-      <div class="campo">
+      <div class="campo <%= errors.brandId ? 'error' : '' %>">
         <label for="brandId">Marca</label>
         <select id="brandId" name="brandId">
           <% brands.forEach(function (item) { %>
-            <option value="<%= item.id %>"><%= item.name %></option>
+            <option value="<%= item.id %>" <%= String(old.brandId) === String(item.id) ? 'selected' : '' %>><%= item.name %></option>
           <% }) %>
         </select>
+        <% if (errors.brandId) { %><p class="msg-error"><%= errors.brandId %></p><% } %>
       </div>
-      <div class="campo">
+      <div class="campo <%= errors.colorId ? 'error' : '' %>">
         <label for="colorId">Color</label>
         <select id="colorId" name="colorId">
           <% colors.forEach(function (item) { %>
-            <option value="<%= item.id %>"><%= item.name %></option>
+            <option value="<%= item.id %>" <%= String(old.colorId) === String(item.id) ? 'selected' : '' %>><%= item.name %></option>
           <% }) %>
         </select>
+        <% if (errors.colorId) { %><p class="msg-error"><%= errors.colorId %></p><% } %>
       </div>
-      <div class="campo">
+      <div class="campo <%= errors.zoneId ? 'error' : '' %>">
         <label for="zoneId">Zona</label>
         <select id="zoneId" name="zoneId">
           <% zones.forEach(function (item) { %>
-            <option value="<%= item.id %>"><%= item.name %></option>
+            <option value="<%= item.id %>" <%= String(old.zoneId) === String(item.id) ? 'selected' : '' %>><%= item.name %></option>
           <% }) %>
         </select>
+        <% if (errors.zoneId) { %><p class="msg-error"><%= errors.zoneId %></p><% } %>
       </div>
       <div class="campo">
         <label for="transmission">Transmisión</label>
         <select id="transmission" name="transmission">
           <option value="Manual">Manual</option>
-          <option value="Automática">Automática</option>
+          <option value="Automática" <%= old.transmission === 'Automática' ? 'selected' : '' %>>Automática</option>
         </select>
       </div>
       <div class="campo">
         <label for="price">Precio</label>
-        <input id="price" name="price" type="number" min="0" required />
+        <input id="price" name="price" type="number" min="0" value="<%= old.price || '' %>" />
       </div>
       <p><button class="btn btn-rojo" type="submit">Guardar vehículo</button></p>
     </form>
   </main>
   <%- include('../partials/footer') %>
+  <script src="/js/form-validation.js"></script>
+  <script src="/js/product-form.js"></script>
 </body>
 </html>

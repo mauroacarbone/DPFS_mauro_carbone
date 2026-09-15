@@ -1,6 +1,7 @@
 const { Op } = require('sequelize');
 const db = require('../database/models');
 const { presentProduct, productInclude } = require('../database/presenters');
+const { firstErrors } = require('../middlewares/validations');
 
 function imageFromRequest(req, currentImage) {
   if (req.file) {
@@ -100,6 +101,8 @@ const productsController = {
     const options = await catalogs();
     res.render('products/productCreate', {
       title: 'Alta de vehículo — RendiYa',
+      errors: {},
+      old: {},
       productCategories: options.productCategories,
       brands: options.brands,
       colors: options.colors,
@@ -108,6 +111,19 @@ const productsController = {
   },
 
   store: async (req, res) => {
+    const errors = firstErrors(req);
+    if (Object.keys(errors).length) {
+      const options = await catalogs();
+      return res.render('products/productCreate', {
+        title: 'Alta de vehículo — RendiYa',
+        errors,
+        old: req.body,
+        productCategories: options.productCategories,
+        brands: options.brands,
+        colors: options.colors,
+        zones: options.zones
+      });
+    }
     const product = await db.Product.create(await payloadFromBody(req));
     res.redirect('/products/' + product.id);
   },
@@ -121,6 +137,8 @@ const productsController = {
     res.render('products/productEdit', {
       title: `Editar ${row.name} — RendiYa`,
       product: presentProduct(row),
+      errors: {},
+      old: {},
       productCategories: options.productCategories,
       brands: options.brands,
       colors: options.colors,
@@ -129,9 +147,23 @@ const productsController = {
   },
 
   update: async (req, res) => {
-    const row = await db.Product.findByPk(req.params.id);
+    const row = await db.Product.findByPk(req.params.id, { include: productInclude });
     if (!row) {
       return res.redirect('/products');
+    }
+    const errors = firstErrors(req);
+    if (Object.keys(errors).length) {
+      const options = await catalogs();
+      return res.render('products/productEdit', {
+        title: `Editar ${row.name} — RendiYa`,
+        product: presentProduct(row),
+        errors,
+        old: req.body,
+        productCategories: options.productCategories,
+        brands: options.brands,
+        colors: options.colors,
+        zones: options.zones
+      });
     }
     await row.update(await payloadFromBody(req, row));
     res.redirect('/products/' + req.params.id);

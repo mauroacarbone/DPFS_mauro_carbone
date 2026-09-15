@@ -354,7 +354,9 @@ h1, h2, h3, .logo-word {
   margin-bottom: 6px;
 }
 .campo .hint { font-size: 12px; color: var(--gris); margin-top: 4px; }
-.campo.error input {
+.campo.error input,
+.campo.error textarea,
+.campo.error select {
   border-color: var(--error);
   background: #fff5f6;
 }

@@ -1,6 +1,7 @@
 const bcrypt = require('bcryptjs');
 const db = require('../database/models');
 const { presentUser } = require('../database/presenters');
+const { firstErrors } = require('../middlewares/validations');
 
 const THIRTY_DAYS = 1000 * 60 * 60 * 24 * 30;
 
@@ -25,18 +26,20 @@ function login(req, res) {
 
 async function processLogin(req, res) {
   const email = (req.body.email || '').trim();
-  const password = req.body.password || '';
-  const stored = await findUserByEmail(email);
-  const ok = stored && bcrypt.compareSync(password, stored.password);
+  const errors = firstErrors(req);
 
-  if (!ok) {
+  if (Object.keys(errors).length) {
+    const mapped = errors.password && errors.password.indexOf('incorrectos') !== -1
+      ? { credentials: errors.password }
+      : errors;
     return res.render('users/login', {
       title: 'Ingresar — RendiYa',
-      errors: { credentials: 'Email o contraseña incorrectos.' },
+      errors: mapped,
       old: { email }
     });
   }
 
+  const stored = await findUserByEmail(email);
   req.session.user = presentUser(stored);
 
   if (req.body.remember) {
@@ -60,23 +63,8 @@ async function processRegister(req, res) {
   const firstName = (req.body.firstName || '').trim();
   const lastName = (req.body.lastName || '').trim();
   const email = (req.body.email || '').trim();
-  const password = req.body.password || '';
-  const passwordConfirm = req.body.passwordConfirm || '';
   const categoryName = req.body.category || 'client';
-  const errors = {};
-
-  if (!firstName) errors.firstName = 'Ingresá tu nombre.';
-  if (!lastName) errors.lastName = 'Ingresá tu apellido.';
-  if (!email) errors.email = 'Ingresá un email.';
-  if (email && await findUserByEmail(email)) {
-    errors.email = 'Ya hay una cuenta con este email.';
-  }
-  if (!password || password.length < 6) {
-    errors.password = 'La contraseña debe tener al menos 6 caracteres.';
-  }
-  if (password !== passwordConfirm) {
-    errors.passwordConfirm = 'Las contraseñas no coinciden.';
-  }
+  const errors = firstErrors(req);
 
   if (Object.keys(errors).length) {
     return res.render('users/register', {
@@ -93,7 +81,7 @@ async function processRegister(req, res) {
     firstName,
     lastName,
     email,
-    password: bcrypt.hashSync(password, 10),
+    password: bcrypt.hashSync(req.body.password, 10),
     image: req.file ? '/images/users/' + req.file.filename : '/images/favicon.png',
     userCategoryId: userCategory.id
   });
@@ -178,7 +166,7 @@ async function update(req, res) {
   if (req.file) {
     data.image = '/images/users/' + req.file.filename;
   }
-  if (req.body.password && req.body.password.length >= 6) {
+  if (req.body.password && req.body.password.length >= 8) {
     data.password = bcrypt.hashSync(req.body.password, 10);
   }
 

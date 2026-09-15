@@ -3,6 +3,7 @@ const path = require('path');
 const multer = require('multer');
 const productsController = require('../controllers/productsController');
 const authMiddleware = require('../middlewares/authMiddleware');
+const validations = require('../middlewares/validations');
 
 const storage = multer.diskStorage({
   destination: path.join(__dirname, '..', '..', 'public', 'images'),
@@ -12,17 +13,23 @@ const storage = multer.diskStorage({
   }
 });
 
-const upload = multer({ storage });
+const upload = multer({
+  storage,
+  fileFilter: (req, file, cb) => {
+    req.fileFieldError = 'imageFile';
+    validations.imageFilter(req, file, cb);
+  }
+});
 const router = express.Router();
 
 router.get('/', productsController.list);
 router.get('/create', authMiddleware, productsController.create);
-router.post('/', authMiddleware, upload.single('imageFile'), productsController.store);
+router.post('/', authMiddleware, upload.single('imageFile'), validations.product, productsController.store);
 router.get('/cart', productsController.cart);
 router.get('/detail/:id', (req, res) => res.redirect('/products/' + req.params.id));
 router.get('/edit/:id', (req, res) => res.redirect('/products/' + req.params.id + '/edit'));
 router.get('/:id/edit', authMiddleware, productsController.edit);
-router.put('/:id', authMiddleware, upload.single('imageFile'), productsController.update);
+router.put('/:id', authMiddleware, upload.single('imageFile'), validations.product, productsController.update);
 router.delete('/:id', authMiddleware, productsController.destroy);
 router.get('/:id', productsController.detail);
 

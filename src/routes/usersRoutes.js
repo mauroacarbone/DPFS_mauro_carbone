@@ -4,6 +4,7 @@ const multer = require('multer');
 const usersController = require('../controllers/usersController');
 const guestMiddleware = require('../middlewares/guestMiddleware');
 const authMiddleware = require('../middlewares/authMiddleware');
+const validations = require('../middlewares/validations');
 
 const storage = multer.diskStorage({
   destination: path.join(__dirname, '..', '..', 'public', 'images', 'users'),
@@ -13,13 +14,19 @@ const storage = multer.diskStorage({
   }
 });
 
-const upload = multer({ storage });
+const upload = multer({
+  storage,
+  fileFilter: (req, file, cb) => {
+    req.fileFieldError = 'image';
+    validations.imageFilter(req, file, cb);
+  }
+});
 const router = express.Router();
 
 router.get('/login', guestMiddleware, usersController.login);
-router.post('/login', guestMiddleware, usersController.processLogin);
+router.post('/login', guestMiddleware, validations.login, usersController.processLogin);
 router.get('/register', guestMiddleware, usersController.register);
-router.post('/register', guestMiddleware, upload.single('image'), usersController.processRegister);
+router.post('/register', guestMiddleware, upload.single('image'), validations.register, usersController.processRegister);
 router.get('/profile', authMiddleware, usersController.profile);
 router.get('/logout', authMiddleware, usersController.logout);
 router.get('/', authMiddleware, usersController.list);

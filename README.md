@@ -207,3 +207,20 @@ mysql -u root -p < src/database/data.sql
 
 Luego `NODE_ENV=production npm start` (requiere MySQL en marcha y `mysql2`).
 
+---
+
+## Sprint 7 — Validaciones
+
+Back-end con **express-validator** en las rutas que reciben formularios. Front-end con JavaScript propio (`public/js/`), porque el visitante puede desactivar el JS del navegador y igual no debe pasar basura al servidor.
+
+| Formulario | Ruta | Scripts |
+|---|---|---|
+| Registro | `POST /users/register` | `register.js` |
+| Login | `POST /users/login` | `login.js` |
+| Alta de vehículo | `POST /products` | `product-form.js` |
+| Edición de vehículo | `PUT /products/:id` | `product-form.js` |
+
+Registro: nombre y apellido (mín. 2), email único y válido, contraseña de 8 caracteres, imagen JPG/JPEG/PNG/GIF si se sube.
+
+Productos: nombre (mín. 5), descripción (mín. 20), imagen con esas extensiones si se sube, y que categoría/marca/color/zona existan en la base.
+

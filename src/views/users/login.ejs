@@ -6,17 +6,19 @@
   <main class="auth">
     <h1>Ingresar</h1>
     <p>Entrá para ver tu perfil y continuar el pago de la seña.</p>
-    <% if (errors.credentials) { %>
-      <div class="banner-error" role="alert"><%= errors.credentials %></div>
+    <% if (errors.credentials || errors.email || errors.password) { %>
+      <div class="banner-error" role="alert"><%= errors.credentials || errors.email || errors.password %></div>
     <% } %>
-    <form action="/users/login" method="post">
-      <div class="campo <%= errors.credentials ? 'error' : '' %>">
+    <form id="form-login" action="/users/login" method="post" novalidate>
+      <div class="campo <%= errors.credentials || errors.email ? 'error' : '' %>">
         <label for="email">Email</label>
-        <input id="email" type="email" name="email" value="<%= old.email || '' %>" required />
+        <input id="email" type="email" name="email" value="<%= old.email || '' %>" />
+        <% if (errors.email && !errors.credentials) { %><p class="msg-error"><%= errors.email %></p><% } %>
       </div>
-      <div class="campo">
+      <div class="campo <%= errors.credentials || errors.password ? 'error' : '' %>">
         <label for="password">Contraseña</label>
-        <input id="password" type="password" name="password" required />
+        <input id="password" type="password" name="password" />
+        <% if (errors.password && !errors.credentials) { %><p class="msg-error"><%= errors.password %></p><% } %>
       </div>
       <label class="check">
         <input type="checkbox" name="remember" value="on" />
@@ -27,5 +29,7 @@
     <p>¿No tenés cuenta? <a href="/users/register">Registrate</a></p>
   </main>
   <%- include('../partials/footer') %>
+  <script src="/js/form-validation.js"></script>
+  <script src="/js/login.js"></script>
 </body>
 </html>

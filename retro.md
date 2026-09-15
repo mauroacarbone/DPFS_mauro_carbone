@@ -171,3 +171,36 @@ Estrella de mar, a partir de la base de datos y Sequelize.
 
 El Sprint 6 cierra el back-end: esquema, modelos y CRUD sobre base relacional. Lo que queda para el último sprint es pulir validaciones y lo que pida la consigna de cierre.
 
+---
+
+# Retrospectiva — Sprint 7
+
+Estrella de mar, a partir de las validaciones de formularios.
+
+## Comenzar a hacer
+
+- Validar primero en el servidor (express-validator) y recién después pulir el JS del navegador.
+- Dejar `novalidate` en los forms para que el mensaje sea el nuestro, no el del browser.
+
+## Hacer más
+
+- Reutilizar un helper de errores (`firstErrors`) para no repetir `validationResult` en cada controlador.
+- Probar el registro con un email ya usado y un archivo que no sea imagen.
+
+## Continuar haciendo
+
+- Mostrar el error al lado del campo, no solo un banner genérico.
+- Actualizar el tablero al inicio del sprint.
+
+## Hacer menos
+
+- Confiar en el atributo HTML `required` como única defensa.
+
+## Dejar de hacer
+
+- Validar solo en el front: se puede apagar desde el navegador.
+
+## Conclusión
+
+El Sprint 7 cierra el circuito de datos: si el formulario miente, el back-end no deja pasar el registro ni el alta de un vehículo.
+
